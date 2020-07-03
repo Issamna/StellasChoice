@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'baseapp',
 ]
 
 MIDDLEWARE = [
@@ -117,4 +118,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/scstatic/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'scstatic')
+AUTH_USER_MODEL = 'baseapp.User'
+
+# Logging settings
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'baseapp': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
