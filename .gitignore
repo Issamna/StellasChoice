@@ -85,6 +85,7 @@ celerybeat-schedule
 # virtualenv
 .venv
 venv/
+venv37/
 ENV/
 .vscode
 # Spyder project settings
@@ -111,3 +112,4 @@ media/
 !**/migrations
 !**/migrations/__init__.py
 .idea
+datasets/
