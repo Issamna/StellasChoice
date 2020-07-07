@@ -5,6 +5,8 @@
 {% block content %}
 
 <div>
-    <h2>We recommend</h2>
+    {% for record in breed %}
+        <h2>{{ record.name }}</h2>
+    {% endfor %}
 </div>
 {% endblock %}

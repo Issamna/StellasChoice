@@ -19,6 +19,6 @@ from baseapp import views as baseapp_views
 
 urlpatterns = [
     path('', baseapp_views.home, name='home'),
-    path('recommend', baseapp_views.recommend, name='recommend'),
+    #path('recommend', baseapp_views.recommend, name='recommend'),
     path('admin/', admin.site.urls),
 ]

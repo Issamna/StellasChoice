@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 def predict_breed(friendliness, exercise, trainability, apartment_living, affectionate, groom, energy,
                   intelligence, sensitivity, size, bark, alone):
     # bring in csv file
-    breeds = pd.read_csv('breedinfo.csv')
+    breeds = pd.read_csv('baseapp/management/breedinfo.csv')
 
     # Pre process
     bins = (214)
@@ -38,7 +38,7 @@ def predict_breed(friendliness, exercise, trainability, apartment_living, affect
 
 
 def merge(array1, array2):
-    merged = [(array1[i], array2[i]) for i in range(0, 214)]
+    merged = [[array1[i], array2[i]] for i in range(0, 214)]
     return merged
 
 
@@ -50,7 +50,9 @@ def first_five(array):
     sorted_array = sorted(array, key=get_key, reverse=True)
     top_five = []
     for i in range(5):
-        top_five.append(sorted_array[i])
+        top_five.append(sorted_array[i][0])
     return top_five
 
+
+#print(predict_breed(1,1,1,1,1,1,1,1,1,1,1,1)[0][0])
 
