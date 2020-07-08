@@ -6,6 +6,7 @@ from baseapp.models import Dog
 from baseapp.models import Breed
 from django.db import connection
 from django.conf import settings
+from baseapp.management.predictadoptionspeed import predict_speed
 
 
 class Command(BaseCommand):
@@ -19,7 +20,7 @@ class Command(BaseCommand):
             with connection.cursor() as cursor:
                 cursor.execute("delete from baseapp_dog", [])
 
-            csv_file_path = "baseapp/datasets/train.csv"
+            csv_file_path = "baseapp/datasets/test.csv"
             with open(csv_file_path, encoding='utf8') as f:
                 reader = csv.reader(f)
                 for row in reader:
@@ -42,11 +43,7 @@ class Command(BaseCommand):
                                 health=row[14],
                                 quantity=row[15],
                                 fee=row[16],
-                                description=row[20]
+                                description=row[20],
+                                adoption_speed=predict_speed(row[2], row[5], row[9], row[10],
+                                                             row[11], row[13], row[14])
                             )
-
-
-
-
-
-

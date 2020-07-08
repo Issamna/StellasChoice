@@ -5,8 +5,51 @@
 {% block content %}
 
 <div>
+    <h3> We recommend:</h3>
     {% for record in breed %}
-        <h2>{{ record.name }}</h2>
+        <h6>{{ record.name }}</h6>
     {% endfor %}
+
+    <h3> Adoptable dogs</h3>
+
+    <table id="adoptable_dogs" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Breed</th>
+                <th>Breed 2</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>adoption_speed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in dogs %}
+                <tr>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.breed_one.name }}</td>
+                    <td>{{ entry.breed_two }}</td>
+                    <td>{{ entry.age }}</td>
+                    {% if entry.gender == 1 %}
+                        <td>Male</td>
+                    {%else %}
+                        <td>Female</td>
+                    {% endif %}
+
+                    {% if entry.adoption_speed == 0 %}
+                        <td>{{ entry.adoption_speed }}</td>
+                    {%else %}
+                        <td>{{ entry.adoption_speed }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#adoptable_dogs').DataTable();
+} );
+</script>
 {% endblock %}

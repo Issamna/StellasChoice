@@ -6,6 +6,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
+
+from baseapp.management.predictadoptionspeed import predict_speed
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -44,7 +49,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=255, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
-    is_staff = models.BooleanField( _('staff status'), default=False, help_text=_('Designates whether the user can log into this site.'))
+    is_staff = models.BooleanField(_('staff status'), default=False,
+                                   help_text=_('Designates whether the user can log into this site.'))
 
     objects = UserManager()
 
@@ -76,22 +82,26 @@ class Breed(models.Model):
     exercise_needs = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     trainability = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     apartment_living = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    affectionate_with_family = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
+    affectionate_with_family = models.PositiveIntegerField(default=0,
+                                                           validators=[MinValueValidator(0), MaxValueValidator(10)])
     groom = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     energy = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     intelligence = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     sensitivity_lvl = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    bark_howl_tendency = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
+    bark_howl_tendency = models.PositiveIntegerField(default=0,
+                                                     validators=[MinValueValidator(0), MaxValueValidator(10)])
     being_alone = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
+
     def get_short_name(self):
         '''
         Returns the short name for the user.
         '''
         return self.name
 
+
 class Dog(models.Model):
-    pet_id = models.CharField(max_length=100, default= 0)
+    pet_id = models.CharField(max_length=100, default=0)
     name = models.CharField(max_length=500)
     age = models.IntegerField(default=0)
     breed_one = models.ForeignKey(Breed, on_delete=models.CASCADE, null=False)
@@ -104,7 +114,21 @@ class Dog(models.Model):
     sterilized = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
     health = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(3)])
     quantity = models.IntegerField(default=1)
-    fee = models.DecimalField(max_digits=10, default=0, decimal_places=2,)
+    fee = models.DecimalField(max_digits=10, default=0, decimal_places=2, )
     description = models.TextField()
-    adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)],
+                                                 editable=False)
 
+
+@receiver(pre_save, sender=Dog)
+def get_adoption_speed(sender, instance, *args, **kwargs):
+    age = instance.age
+    gender = instance.gender
+    maturity_size = instance.maturity_size
+    fur_length = instance.fur_length
+    vaccinated = instance.vaccinated
+    sterilized = instance.sterilized
+    health = instance.health
+
+    instance.adoption_speed = predict_speed(age, gender, maturity_size, fur_length, vaccinated, sterilized, health)
+    return
