@@ -78,20 +78,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Breed(models.Model):
     name = models.CharField(max_length=100)
     csv_id = models.IntegerField(default=0)
-    friendliness = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    exercise_needs = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    trainability = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    apartment_living = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    affectionate_with_family = models.PositiveIntegerField(default=0,
-                                                           validators=[MinValueValidator(0), MaxValueValidator(10)])
-    groom = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    energy = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    intelligence = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    sensitivity_lvl = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-    bark_howl_tendency = models.PositiveIntegerField(default=0,
-                                                     validators=[MinValueValidator(0), MaxValueValidator(10)])
-    being_alone = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
+    adaptability = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    energy = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    friendliness = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    health_grooming = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    trainability = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
 
     def get_short_name(self):
         '''
@@ -115,7 +107,7 @@ class Dog(models.Model):
     health = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(3)])
     quantity = models.IntegerField(default=1)
     fee = models.DecimalField(max_digits=10, default=0, decimal_places=2, )
-    description = models.TextField()
+    description = models.TextField(default='')
     adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)],
                                                  editable=False)
 

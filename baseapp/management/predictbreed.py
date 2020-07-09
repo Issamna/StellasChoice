@@ -3,21 +3,22 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 
-def predict_breed(friendliness, exercise, trainability, apartment_living, affectionate, groom, energy,
-                  intelligence, sensitivity, size, bark, alone):
+def predict_breed(adaptability, energy, friendliness, health_grooming, trainability, size,):
     # bring in csv file
-    breeds = pd.read_csv('baseapp/management/breedinfo.csv')
+    breeds = pd.read_csv('baseapp/datasets/breedparameterdata with labels.csv')
 
     # Pre process
-    bins = (214)
+    bins = 213
     breed_id = []
-    for x in range(214):
+    for x in range(213):
         breed_id.append(x)
-    breeds['Breed'] = pd.cut(breeds['Breed'], bins=bins, labels=breed_id)
+    del breeds['Breeds']
+
+    breeds['BreedID'] = pd.cut(breeds['BreedID'], bins=bins, labels=breed_id)
     label_quality = LabelEncoder()
-    breeds['Breed'] = label_quality.fit_transform(breeds['Breed'])
-    X = breeds.drop('Breed', 1)
-    Y = breeds['Breed']
+    breeds['BreedID'] = label_quality.fit_transform(breeds['BreedID'])
+    X = breeds.drop('BreedID', 1)
+    Y = breeds['BreedID']
 
     # Scale
     sc = StandardScaler()
@@ -27,8 +28,7 @@ def predict_breed(friendliness, exercise, trainability, apartment_living, affect
     rfc = RandomForestClassifier(n_estimators=200)
     rfc.fit(X, Y)
 
-    to_predict = [[friendliness, exercise, trainability, apartment_living, affectionate, groom, energy,
-                   intelligence, sensitivity, size, bark, alone]]
+    to_predict = [[adaptability, energy, friendliness, health_grooming, trainability, size]]
     to_predict = sc.transform(to_predict)
     id_predicted = rfc.predict(to_predict)
     id_all_predicted = rfc.predict_proba(to_predict)[0]
@@ -38,7 +38,7 @@ def predict_breed(friendliness, exercise, trainability, apartment_living, affect
 
 
 def merge(array1, array2):
-    merged = [[array1[i], array2[i]] for i in range(0, 214)]
+    merged = [[array1[i], array2[i]] for i in range(0, 213)]
     return merged
 
 
@@ -54,5 +54,5 @@ def first_five(array):
     return top_five
 
 
-#print(predict_breed(1,1,1,1,1,1,1,1,1,1,1,1)[0][0])
+
 
