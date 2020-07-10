@@ -26,5 +26,6 @@ class Command(BaseCommand):
                     breed.size = row[7]
                     breed.save()
 
+            Breed.objects.filter(friendliness=0).delete()
 
 

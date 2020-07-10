@@ -1,24 +1,28 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, LabelEncoder
+import csv
 
-
-def predict_breed(adaptability, energy, friendliness, health_grooming, trainability, size,):
+def predict_breed(adaptability, energy, friendliness, health_grooming, trainability, size):
     # bring in csv file
     breeds = pd.read_csv('baseapp/datasets/breedparameterdata with labels.csv')
-
+    del breeds['Breeds Names']
     # Pre process
-    bins = 213
+    bins = (213)
     breed_id = []
+    breed_names = []
+    csv_file_path = 'baseapp/datasets/breedparameterdata.csv'
+    with open(csv_file_path, encoding='utf8') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            breed_names.append(row[1])
     for x in range(213):
         breed_id.append(x)
-    del breeds['Breeds']
-
-    breeds['BreedID'] = pd.cut(breeds['BreedID'], bins=bins, labels=breed_id)
+    breeds['Breed'] = pd.cut(breeds['Breed'], bins=bins, labels=breed_id)
     label_quality = LabelEncoder()
-    breeds['BreedID'] = label_quality.fit_transform(breeds['BreedID'])
-    X = breeds.drop('BreedID', 1)
-    Y = breeds['BreedID']
+    breeds['Breed'] = label_quality.fit_transform(breeds['Breed'])
+    X = breeds.drop('Breed', 1)
+    Y = breeds['Breed']
 
     # Scale
     sc = StandardScaler()
@@ -33,12 +37,12 @@ def predict_breed(adaptability, energy, friendliness, health_grooming, trainabil
     id_predicted = rfc.predict(to_predict)
     id_all_predicted = rfc.predict_proba(to_predict)[0]
 
-    predicted_array = first_five(merge(breed_id, id_all_predicted))
+    predicted_array = first_five(merge(breed_names, id_all_predicted))
     return predicted_array
 
 
 def merge(array1, array2):
-    merged = [[array1[i], array2[i]] for i in range(0, 213)]
+    merged = [(array1[i], array2[i]) for i in range(0, 213)]
     return merged
 
 
@@ -52,7 +56,4 @@ def first_five(array):
     for i in range(5):
         top_five.append(sorted_array[i][0])
     return top_five
-
-
-
 
