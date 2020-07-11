@@ -27,6 +27,9 @@ body{
 .select-cols{
     margin-bottom: 20px;
 }
+form h7{
+    font-weight:bold;
+}
 
 .top-breed{
     max-width: 900px;
