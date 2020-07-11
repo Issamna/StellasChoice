@@ -1,0 +1,50 @@
+/* Navbar */
+body{
+    background-color: #e4e4e4;
+}
+.logo-title{
+   font-size: 32px;
+   margin-right: 10px;
+}
+
+.nav-item{
+    margin-top: 5px;
+}
+.logo-small{
+    margin-top: -15px;
+}
+
+/* Home */
+.mainbody{
+    margin-top: 30px;
+}
+.form-box{
+    margin-top: 20px;
+}
+.custom-select{
+    width: 75px;
+}
+.select-cols{
+    margin-bottom: 20px;
+}
+
+.top-breed{
+    max-width: 900px;
+
+}
+.other-breed{
+    max-width: 1200px;
+}
+.other-breed-box{
+    background-color: grey;
+    max-width: 500px;
+}
+.other-breed-size{
+    top-margin: -5px;
+}
+.progress{
+
+    height: 20px;
+}
+.centered { vertical-align:middle; text-align:center; }
+.centered img { display:block; margin:0 auto; }

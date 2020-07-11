@@ -4,75 +4,94 @@
 {% block title %}Stella's choice{% endblock %}
 {% block content %}
 
-<div>
-    <h2>Enter Breed Parameters</h2>
-    <form method="POST">
-      {% csrf_token %}
-      <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-          <label  for="adaptabilitySelect">Adaptability</label>
-          <select name="adaptabilitySelect" class="custom-select mr-sm-2" id="adaptabilitySelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option selected value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+
+<div class="container mainbody">
+    <h2>Lets find you a dog to adopt</h2>
+    <h4>Stella is here to help you pick a new dog for your family. Stella has a soft spot for our
+    long term residents and tries to sniff out dogs who might need more help</h4>
+    <div class="container form-box">
+      <h5>Select a rating for each attribute</h5>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-col align-items-center">
+          <div class="row">
+            <div class="col-6 my-1 select-cols">
+            <select name="adaptabilitySelect" class="custom-select mr-sm-2 select-att" id="adaptabilitySelect">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option selected value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <h7 for="adaptabilitySelect">Adaptability</h7>
+            <p>Higher rating means adapts well in apartments, tolerates being alone or does well in excessive weather conditions</p>
+          </div>
+            <div class="col-6 my-1 select-cols">
+            <select name="energySelect" class="custom-select mr-sm-2" id="energySelect">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option selected value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <h7 for="energySelect">Energy</h7>
+            <p>Higher rating dogs are more active and playful but require more exercise</p>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-6 my-1 select-cols">
+              <select name="friendlinessSelect" class="custom-select mr-sm-2" id="friendlinessSelect">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option selected value="5">5</option>
+              </select>
+              <h7 for="friendlinessSelect">Overall Friendliness</h7>
+              <p>Average friendliness towards family, kids, strangers and other dogs</p>
+            </div>
+            <div class="col-6 my-1 select-cols">
+              <select name="health_groomingSelect" class="custom-select mr-sm-2" id="health_groomingSelect">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option selected value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <h7  for="health_groomingSelect">Health and Grooming</h7>
+              <p>Higher rating means requires more attention to health and grooming needs</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 my-1 select-cols">
+            <select name="trainabilitySelect" class="custom-select mr-sm-2" id="trainabilitySelect">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option selected value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <h7 for="trainabilitySelect">Trainability</h7>
+            <p>Higher rating dogs are usually easier to train but tend to have higher wanderlust and prey-drive</p>
+          </div>
+            <div class="col-6 my-1 select-cols">
+            <select name="sizeSelect" class="custom-select mr-sm-2" id="sizeSelect">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option selected value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <h7 for="sizeSelect">Size</h7>
+            <p>1 = Small breeds  5 = Large breeds </p>
+          </div>
+          </div>
         </div>
         <div class="col-auto my-1">
-          <label for="energySelect">Energy</label>
-          <select name="energySelect" class="custom-select mr-sm-2" id="energySelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option selected value="4">4</option>
-            <option value="5">5</option>
-          </select>
+          <button type="submit" value="Submit"  class="btn btn-dark">Submit</button>
         </div>
-        <div class="col-auto my-1">
-          <label for="friendlinessSelect">Overall Friendliness</label>
-          <select name="friendlinessSelect" class="custom-select mr-sm-2" id="friendlinessSelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option selected value="5">5</option>
-          </select>
-        </div>
-        <div class="col-auto my-1">
-          <label  for="health_groomingSelect">Health and Grooming</label>
-          <select name="health_groomingSelect" class="custom-select mr-sm-2" id="health_groomingSelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option selected value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <div class="col-auto my-1">
-          <label for="trainabilitySelect">Trainability</label>
-          <select name="trainabilitySelect" class="custom-select mr-sm-2" id="trainabilitySelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option selected value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <div class="col-auto my-1">
-          <label for="sizeSelect">Size</label>
-          <select name="sizeSelect" class="custom-select mr-sm-2" id="sizeSelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option selected value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-auto my-1">
-        <button type="submit" value="Submit"  class="btn btn-primary">Submit</button>
-      </div>
-    </form>
+      </form>
+    </div>
+
 </div>
 {% endblock %}

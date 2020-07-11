@@ -110,7 +110,14 @@ class Dog(models.Model):
     description = models.TextField(default='')
     adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)],
                                                  editable=False)
+    def get_breed_two_name(self):
+        if self.breed_two > 0:
+            breed_two_query = Breed.objects.filter(pk=self.breed_two)
+            if len(breed_two_query) > 0:
+                breed_two = breed_two_query[0]
+                return breed_two.name
 
+        return ""
 
 @receiver(pre_save, sender=Dog)
 def get_adoption_speed(sender, instance, *args, **kwargs):
