@@ -6,7 +6,7 @@ from baseapp.models import Breed, Dog
 logger = logging.getLogger(__name__)
 
 
-# Create your views here.
+
 def home(request):
     # logger.debug("baseapp.views.home")
     if request.method == 'POST':
@@ -47,4 +47,53 @@ def home(request):
 
     return render(request, 'home.html', {
 
+    })
+
+
+def datavisual(request):
+
+    all_breeds = Breed.objects.all()
+
+    adaptability_count = [0, 0, 0, 0, 0]
+    adaptability_lists = [[], [], [], [], []]
+    energy_count = [0, 0, 0, 0, 0]
+    energy_lists = [[], [], [], [], []]
+    friendliness_count = [0, 0, 0, 0, 0]
+    friendliness_lists = [[], [], [], [], []]
+    health_grooming_count = [0, 0, 0, 0, 0]
+    health_grooming_lists = [[], [], [], [], []]
+    trainability_count = [0, 0, 0, 0, 0]
+    trainability_lists = [[], [], [], [], []]
+    size_count = [0, 0, 0, 0, 0]
+    size_lists = [[], [], [], [], []]
+    for breed in all_breeds:
+        adaptability_count[breed.adaptability - 1] += 1
+        adaptability_lists[breed.adaptability - 1].append(breed.name)
+        energy_count[breed.energy - 1] += 1
+        energy_lists[breed.energy - 1].append(breed.name)
+        friendliness_count[breed.friendliness - 1] += 1
+        friendliness_lists[breed.friendliness - 1].append(breed.name)
+        health_grooming_count[breed.health_grooming - 1] += 1
+        health_grooming_lists[breed.health_grooming - 1].append(breed.name)
+        trainability_count[breed.trainability - 1] += 1
+        trainability_lists[breed.trainability - 1].append(breed.name)
+        size_count[breed.size - 1] += 1
+        size_lists[breed.size - 1].append(breed.name)
+
+
+
+    logger.debug(adaptability_lists[1])
+    return render(request, 'datavisual.html', {
+        'adaptability_count': adaptability_count,
+        'energy_count': energy_count,
+        'friendliness_count': friendliness_count,
+        'health_grooming_count': health_grooming_count,
+        'trainability_count': trainability_count,
+        'size_count': size_count,
+        'adaptability_lists': adaptability_lists,
+        'energy_lists': energy_lists,
+        'friendliness_lists': friendliness_lists,
+        'health_grooming_lists': health_grooming_lists,
+        'trainability_lists': trainability_lists,
+        'size_lists': size_lists
     })

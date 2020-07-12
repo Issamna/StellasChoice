@@ -1,0 +1,734 @@
+<!-- templates/recommend.html -->
+{% extends 'base.html' %}
+
+{% block title %}Stella's choice{% endblock %}
+{% block content %}
+
+<div class="mainbody">
+    <h2>Choose a tab</h2>
+    <div class="container">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="adaptability-tab" data-toggle="tab" href="#adaptability" role="tab" aria-controls="adaptability" aria-selected="true">Adaptability</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="energy-tab" data-toggle="tab" href="#energy" role="tab" aria-controls="energy" aria-selected="false">Energy</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="friendliness-tab" data-toggle="tab" href="#friendliness" role="tab" aria-controls="friendliness" aria-selected="false">Friendliness</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="health-grooming-tab" data-toggle="tab" href="#health-grooming" role="tab" aria-controls="health-grooming" aria-selected="false">Health/Grooming</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="trainability-tab" data-toggle="tab" href="#trainability" role="tab" aria-controls="trainability" aria-selected="false">Trainability</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="size-tab" data-toggle="tab" href="#size" role="tab" aria-controls="size" aria-selected="false">Size</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="adoptionspeed-tab" data-toggle="tab" href="#adoptionspeed" role="tab" aria-controls="adoptionspeed" aria-selected="false">Stella's Choice</a>
+          </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="adaptability" role="tabpanel" aria-labelledby="adaptability-tab">
+              <div class="container">
+                <div class="row top-row-data">
+                  <div class="col-12 col-sm-6 justify-content-center">
+                      <h3>Adaptability is the average of the following:</h3>
+                      <ul>
+                          <li>Adapts well to apartment living</li>
+                          <li>Good for novice owners</li>
+                          <li>Sensitivity level</li>
+                          <li>Tolerates being alone</li>
+                          <li>Tolerates cold weather</li>
+                          <li>Tolerates hot weather</li>
+                      </ul>
+                  </div>
+                  <div class="col-12 col-sm-6 graph-box">
+                      <div class="container ">
+                        <canvas id="adaptabilityChart" height="200"></canvas>
+                      </div>
+
+                  </div>
+              </div>
+              </div>
+              <div class="container d-none d-sm-block">
+                  <h3>Breeds in each rating</h3>
+                  <h4>Rating 1</h4>
+                  <p>
+                      {% if adaptability_lists.0 %}
+                        {% for entry in adaptability_lists.0 %}
+                            <span class="badge badge-danger">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 2</h4>
+                  <p>
+                      {% if adaptability_lists.1 %}
+                        {% for entry in adaptability_lists.1 %}
+                            <span class="badge badge-info">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 3</h4>
+                  <p>
+                      {% if adaptability_lists.2 %}
+                        {% for entry in adaptability_lists.2 %}
+                            <span class="badge badge-warning">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 4</h4>
+                  <p>
+                      {% if adaptability_lists.3 %}
+                        {% for entry in adaptability_lists.3 %}
+                            <span class="badge badge-success">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 5</h4>
+                  <p>
+                      {% if adaptability_lists.4 %}
+                        {% for entry in adaptability_lists.4 %}
+                            <span class="badge badge-primary">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="energy" role="tabpanel" aria-labelledby="energy-tab">
+              <div class="container">
+                <div class="row top-row-data">
+                  <div class="col-12 col-sm-6 justify-content-center">
+                      <h3>Energy is the average of breeds physical needs:</h3>
+                      <ul>
+                          <li>Energy level</li>
+                          <li>Intensity</li>
+                          <li>Exercise Needs</li>
+                          <li>Potential for playfulness</li>
+                      </ul>
+                  </div>
+                  <div class="col-12 col-sm-6 graph-box">
+                      <div class="container ">
+                        <canvas id="energyChart" height="200"></canvas>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="container d-none d-sm-block">
+                  <h3>Breeds in each rating</h3>
+                  <h4>Rating 1</h4>
+                  <p>
+                      {% if energy_lists.0 %}
+                        {% for entry in energy_lists.0 %}
+                            <span class="badge badge-danger">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 2</h4>
+                  <p>
+                      {% if energy_lists.1 %}
+                        {% for entry in energy_lists.1 %}
+                            <span class="badge badge-info">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 3</h4>
+                  <p>
+                      {% if energy_lists.2 %}
+                        {% for entry in energy_lists.2 %}
+                            <span class="badge badge-warning">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 4</h4>
+                  <p>
+                      {% if energy_lists.3 %}
+                        {% for entry in energy_lists.3 %}
+                            <span class="badge badge-success">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 5</h4>
+                  <p>
+                      {% if energy_lists.4 %}
+                        {% for entry in energy_lists.4 %}
+                            <span class="badge badge-primary">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="friendliness" role="tabpanel" aria-labelledby="friendliness-tab">
+              <div class="container">
+                <div class="row top-row-data">
+                  <div class="col-12 col-sm-6 justify-content-center">
+                      <h3>Friendliness is the average of the following:</h3>
+                      <ul>
+                          <li>Affectionate With family</li>
+                          <li>Kid friendly</li>
+                          <li>Dog friendly</li>
+                          <li>Friendly toward strangers</li>
+                      </ul>
+                  </div>
+                  <div class="col-12 col-sm-6 graph-box">
+                      <div class="container ">
+                        <canvas id="friendlinessChart" height="200"></canvas>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="container d-none d-sm-block">
+                  <h3>Breeds in each rating</h3>
+                  <h4>Rating 1</h4>
+                  <p>
+                      {% if friendliness_lists.0 %}
+                        {% for entry in friendliness_lists.0 %}
+                            <span class="badge badge-danger">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 2</h4>
+                  <p>
+                      {% if friendliness_lists.1 %}
+                        {% for entry in friendliness_lists.1 %}
+                            <span class="badge badge-info">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 3</h4>
+                  <p>
+                      {% if friendliness_lists.2 %}
+                        {% for entry in friendliness_lists.2 %}
+                            <span class="badge badge-warning">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 4</h4>
+                  <p>
+                      {% if friendliness_lists.3 %}
+                        {% for entry in friendliness_lists.3 %}
+                            <span class="badge badge-success">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 5</h4>
+                  <p>
+                      {% if friendliness_lists.4 %}
+                        {% for entry in friendliness_lists.4 %}
+                            <span class="badge badge-primary">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="health-grooming" role="tabpanel" aria-labelledby="health-grooming-tab">
+              <div class="container">
+                <div class="row top-row-data">
+                  <div class="col-12 col-sm-6 justify-content-center">
+                      <h3>Health and grooming needs is the average of the following:</h3>
+                      <ul>
+                          <li>Amount of shedding</li>
+                          <li>Drooling potential</li>
+                          <li>Easy to groom</li>
+                          <li>General health</li>
+                          <li>Potential for weight gain</li>
+                      </ul>
+                  </div>
+                  <div class="col-12 col-sm-6 graph-box">
+                      <div class="container ">
+                        <canvas id="healthGroomingChart" height="200"></canvas>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="container d-none d-sm-block">
+                  <h3>Breeds in each rating</h3>
+                  <h4>Rating 1</h4>
+                  <p>
+                      {% if health_grooming_lists.0 %}
+                        {% for entry in health_grooming_lists.0 %}
+                            <span class="badge badge-danger">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 2</h4>
+                  <p>
+                      {% if health_grooming_lists.1 %}
+                        {% for entry in health_grooming_lists.1 %}
+                            <span class="badge badge-info">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 3</h4>
+                  <p>
+                      {% if health_grooming_lists.2 %}
+                        {% for entry in health_grooming_lists.2 %}
+                            <span class="badge badge-warning">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 4</h4>
+                  <p>
+                      {% if health_grooming_lists.3 %}
+                        {% for entry in health_grooming_lists.3 %}
+                            <span class="badge badge-success">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 5</h4>
+                  <p>
+                      {% if health_grooming_lists.4 %}
+                        {% for entry in health_grooming_lists.4 %}
+                            <span class="badge badge-primary">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="trainability" role="tabpanel" aria-labelledby="trainability-tab">
+              <div class="container">
+                <div class="row top-row-data">
+                  <div class="col-12 col-sm-6 justify-content-center">
+                      <h3>Trainability is the average of the following:</h3>
+                      <ul>
+                          <li>Easy to train</li>
+                          <li>Intelligence</li>
+                          <li>Potential for mouthiness</li>
+                          <li>Prey drive</li>
+                          <li>Wanderlust potential</li>
+                          <li>Tendency to bark or howl</li>
+                      </ul>
+                  </div>
+                  <div class="col-12 col-sm-6 graph-box">
+                      <div class="container ">
+                        <canvas id="trainabilityChart" height="200"></canvas>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="container d-none d-sm-block">
+                  <h3>Breeds in each rating</h3>
+                  <h4>Rating 1</h4>
+                  <p>
+                      {% if trainability_lists.0 %}
+                        {% for entry in trainability_lists.0 %}
+                            <span class="badge badge-danger">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 2</h4>
+                  <p>
+                      {% if trainability_lists.1 %}
+                        {% for entry in trainability_lists.1 %}
+                            <span class="badge badge-info">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 3</h4>
+                  <p>
+                      {% if trainability_lists.2 %}
+                        {% for entry in trainability_lists.2 %}
+                            <span class="badge badge-warning">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 4</h4>
+                  <p>
+                      {% if trainability_lists.3 %}
+                        {% for entry in trainability_lists.3 %}
+                            <span class="badge badge-success">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 5</h4>
+                  <p>
+                      {% if trainability_lists.4 %}
+                        {% for entry in trainability_lists.4 %}
+                            <span class="badge badge-primary">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="size" role="tabpanel" aria-labelledby="size-tab">
+              <div class="container">
+                <div class="row top-row-data">
+                  <div class="col-12 col-sm-6 justify-content-center">
+                      <h3>Size reflects the following:</h3>
+                      <ul>
+                          <li>1 - Extra small</li>
+                          <li>2 - Small</li>
+                          <li>3 - Medium</li>
+                          <li>4 - Large</li>
+                          <li>5 - Extra large</li>
+
+                      </ul>
+                  </div>
+                  <div class="col-12 col-sm-6 graph-box">
+                      <div class="container ">
+                        <canvas id="sizeChart" height="200"></canvas>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="container d-none d-sm-block">
+                  <h3>Breeds in each rating</h3>
+                  <h4>Rating 1</h4>
+                  <p>
+                      {% if size_lists.0 %}
+                        {% for entry in size_lists.0 %}
+                            <span class="badge badge-danger">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 2</h4>
+                  <p>
+                      {% if size_lists.1 %}
+                        {% for entry in size_lists.1 %}
+                            <span class="badge badge-info">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 3</h4>
+                  <p>
+                      {% if size_lists.2 %}
+                        {% for entry in size_lists.2 %}
+                            <span class="badge badge-warning">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 4</h4>
+                  <p>
+                      {% if size_lists.3 %}
+                        {% for entry in size_lists.3 %}
+                            <span class="badge badge-success">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+                  <h4>Rating 5</h4>
+                  <p>
+                      {% if size_lists.4 %}
+                        {% for entry in size_lists.4 %}
+                            <span class="badge badge-primary">{{ entry }}</span>
+                        {% endfor %}
+                      {% else %}
+                          No breeds associated with this rating
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="adoptionspeed" role="tabpanel" aria-labelledby="adoptionspeed-tab">
+              <h2>coming soon</h2>
+          </div>
+
+
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
+{% block customjs %}
+<script>
+
+var ctx = document.getElementById('adaptabilityChart').getContext('2d');
+var adaptabilityChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Dogs in each rating',
+            data: [{% for entry in adaptability_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+
+var ctx = document.getElementById('energyChart').getContext('2d');
+var energyChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Dogs in each rating',
+            data: [{% for entry in energy_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+
+var ctx = document.getElementById('friendlinessChart').getContext('2d');
+var friendlinessChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Dogs in each rating',
+            data: [{% for entry in friendliness_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+
+var ctx = document.getElementById('healthGroomingChart').getContext('2d');
+var healthGroomingChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Dogs in each rating',
+            data: [{% for entry in health_grooming_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+
+var ctx = document.getElementById('trainabilityChart').getContext('2d');
+var trainabilityChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Dogs in each rating',
+            data: [{% for entry in trainability_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+
+var ctx = document.getElementById('sizeChart').getContext('2d');
+var sizeChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Dogs in each rating',
+            data: [{% for entry in size_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+{% endblock %}

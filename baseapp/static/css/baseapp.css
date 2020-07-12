@@ -51,3 +51,12 @@ form h7{
 }
 .centered { vertical-align:middle; text-align:center; }
 .centered img { display:block; margin:0 auto; }
+
+
+
+.nav-tabs{
+    background-color: grey;
+}
+.top-row-data{
+    margin-top: 20px;
+}
