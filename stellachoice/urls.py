@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from baseapp import views as baseapp_views
 
+admin.site.site_header = "Stella's Choice admin"
+admin.site.site_title = "Stella's Choice Admin"
+admin.site.index_title = "Stella's Choice administration"
+
 urlpatterns = [
     path('', baseapp_views.home, name='home'),
     path('datavisual', baseapp_views.datavisual, name='datavisual'),

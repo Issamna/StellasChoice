@@ -85,10 +85,7 @@ class Breed(models.Model):
     trainability = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
 
-    def get_short_name(self):
-        '''
-        Returns the short name for the user.
-        '''
+    def __str__(self):
         return self.name
 
 
@@ -118,6 +115,10 @@ class Dog(models.Model):
                 return breed_two.name
 
         return ""
+
+    def __str__(self):
+        return self.name
+
 
 @receiver(pre_save, sender=Dog)
 def get_adoption_speed(sender, instance, *args, **kwargs):
