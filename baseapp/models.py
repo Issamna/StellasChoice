@@ -12,6 +12,7 @@ from django.db.models.signals import pre_save
 from baseapp.management.predictadoptionspeed import predict_speed
 
 
+# Django User Management -- ignore
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -43,6 +44,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+# Django User Creation -- ignore
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=255, blank=True)
@@ -75,6 +77,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.first_name
 
 
+# Breed model - create database and model/object
 class Breed(models.Model):
     name = models.CharField(max_length=100)
     csv_id = models.IntegerField(default=0)
@@ -89,12 +92,13 @@ class Breed(models.Model):
         return self.name
 
 
+# Dog model - create database and model/object
 class Dog(models.Model):
     pet_id = models.CharField(max_length=100, default=0)
     name = models.CharField(max_length=500)
     age = models.IntegerField(default=0)
     breed_one = models.ForeignKey(Breed, on_delete=models.CASCADE, null=False)
-    breed_two = models.IntegerField(default=0)
+    breed_two = models.ForeignKey(Breed, on_delete=models.CASCADE, null=True, related_name='breed_two')
     gender = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3)])
     maturity_size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(4)])
     fur_length = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3)])
@@ -105,21 +109,15 @@ class Dog(models.Model):
     quantity = models.IntegerField(default=1)
     fee = models.DecimalField(max_digits=10, default=0, decimal_places=2, )
     description = models.TextField(default='')
+    # Calculate adoption speed when model created
     adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)],
                                                  editable=False)
-    def get_breed_two_name(self):
-        if self.breed_two > 0:
-            breed_two_query = Breed.objects.filter(pk=self.breed_two)
-            if len(breed_two_query) > 0:
-                breed_two = breed_two_query[0]
-                return breed_two.name
-
-        return ""
 
     def __str__(self):
         return self.name
 
 
+# Calculate adoption speed when model edited
 @receiver(pre_save, sender=Dog)
 def get_adoption_speed(sender, instance, *args, **kwargs):
     age = instance.age

@@ -5,10 +5,11 @@
 {% block content %}
 
 <div class="mainbody">
-
+    <!--Top breed recommended-->
     <h2>Stella recommends</h2>
     <div class="container top-breed">
         <div class="row">
+            <!--Breed Name and size-->
             <div class="col-sm col-md-3">
                 <h3>{{ topbreed.name }}</h3>
                 <p>
@@ -25,6 +26,7 @@
                 {% endif %}
                 </p>
             </div>
+            <!--Breed parameters-->
             <div class="col-sm col-md-9">
                 <div class="row">
                     <div class="col-sm col-md-2">
@@ -79,9 +81,7 @@
             </div>
         </div>
     </div>
-
-
-
+    <!--Other breeds recommended-->
     <h3>Other breeds</h3>
     <div class="container">
         <div class="row other-breed mx-auto">
@@ -110,9 +110,7 @@
         {% endfor %}
         </div>
     </div>
-
-
-
+    <!--Adoptable dogs matching breed assorted by Stella's choice-->
     <h3>Stella's friends ready for adoption</h3>
     <div class="table-responsive">
         <table id="adoptable_dogs" class="table table-hover " style="width:100%">
@@ -135,7 +133,7 @@
                 {% endif %}
                     <td>{{ entry.name }}</td>
                     <td>{{ entry.breed_one.name }}</td>
-                    <td>{{ entry.get_breed_two_name }}</td>
+                    <td>{{ entry.breed_two.name }}</td>
                     <td>{{ entry.age }}</td>
                     {% if entry.gender == 1 %}
                         <td>Male</td>

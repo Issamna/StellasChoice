@@ -6,11 +6,13 @@ from baseapp.models import Breed, Dog
 logger = logging.getLogger(__name__)
 
 
-
 def home(request):
     # logger.debug("baseapp.views.home")
+
+    # Form submit
     if request.method == 'POST':
-        logger.debug(request.POST)
+        # logger.debug(request.POST)
+        # Get values
         postValues = request.POST.copy()
         adaptability = int(postValues['adaptabilitySelect'])
         energy = int(postValues['energySelect'])
@@ -18,9 +20,11 @@ def home(request):
         health_grooming = int(postValues['health_groomingSelect'])
         trainability = int(postValues['trainabilitySelect'])
         size = int(postValues['sizeSelect'])
+        # Predict breed using values
         breeds_predicted = predict_breed(adaptability, energy, friendliness, health_grooming, trainability, size)
+        # Get top breed predicted
         top_breed = Breed.objects.filter(name=breeds_predicted[0])[0]
-
+        # Convert top breed predicted data to percentage for bar
         topbar_values = {
             "adaptability": int((top_breed.adaptability / 5) * 100),
             "energy": int((top_breed.energy / 5) * 100),
@@ -29,14 +33,21 @@ def home(request):
             "trainability": int((top_breed.trainability / 5) * 100),
             "size": int((top_breed.size / 5) * 100)
         }
-
+        # Find breed data from database
         breed_result = Breed.objects.filter(name__in=breeds_predicted)
+        # Get primary keys of predicted breeds
         breed_result_ids = [breed_result_id.pk for breed_result_id in breed_result]
+        # Get adoptable dogs matching its first breeds matching predicted
         primary_result = Dog.objects.filter(breed_one_id__in=breed_result_ids)
-        secondary_result = Dog.objects.filter(breed_two__in=breed_result_ids)
+        # Get adoptable dogs matching its second breeds matching predicted
+        secondary_result = Dog.objects.filter(breed_two_id__in=breed_result_ids)
+        # Union both
         adoptable_result = primary_result.union(secondary_result)
+        # Remove top breed
         breeds_predicted.pop(0)
+        # Other four breeds
         other_breeds = Breed.objects.filter(name__in=breeds_predicted)
+        # Return recommend page with data
         return render(request, 'recommend.html', {
             'topbreed': top_breed,
             'topbar_values': topbar_values,
@@ -51,9 +62,9 @@ def home(request):
 
 
 def datavisual(request):
-
+    # Get all breed data
     all_breeds = Breed.objects.all()
-
+    # Create empty arrays to transfer data
     adaptability_count = [0, 0, 0, 0, 0]
     adaptability_lists = [[], [], [], [], []]
     energy_count = [0, 0, 0, 0, 0]
@@ -66,6 +77,7 @@ def datavisual(request):
     trainability_lists = [[], [], [], [], []]
     size_count = [0, 0, 0, 0, 0]
     size_lists = [[], [], [], [], []]
+    # Loop through data and fill arrays
     for breed in all_breeds:
         adaptability_count[breed.adaptability - 1] += 1
         adaptability_lists[breed.adaptability - 1].append(breed.name)
@@ -80,9 +92,7 @@ def datavisual(request):
         size_count[breed.size - 1] += 1
         size_lists[breed.size - 1].append(breed.name)
 
-
-
-    logger.debug(adaptability_lists[1])
+    # Return datavisual page with data
     return render(request, 'datavisual.html', {
         'adaptability_count': adaptability_count,
         'energy_count': energy_count,
