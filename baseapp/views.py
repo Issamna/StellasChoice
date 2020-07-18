@@ -2,6 +2,8 @@ from django.shortcuts import render
 import logging
 from baseapp.management.predictbreed import predict_breed
 from baseapp.models import Breed, Dog
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse, HttpResponseNotFound
 
 logger = logging.getLogger(__name__)
 
@@ -108,11 +110,12 @@ def datavisual(request):
         'size_lists': size_lists
     })
 
-def about(request):
 
+def about(request):
     return render(request, 'about.html', {
 
     })
+
 
 def alldogs(request):
     all_dogs = Dog.objects.all()
@@ -121,3 +124,13 @@ def alldogs(request):
     })
 
 
+def pdf_view(request):
+    fs = FileSystemStorage()
+    filename = 'baseapp/static/Capstone Document.pdf'
+    if fs.exists(filename):
+        with fs.open(filename) as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="Capstone Document.pdf"'
+            return response
+    else:
+        return HttpResponseNotFound('The requested pdf was not found in our server.')

@@ -14,11 +14,11 @@
                     <img src="{% static 'Logo.png' %}"  class="img-fluid d-block">
                     <div class="row d-flex justify-content-center buttons-box">
                         <a href="https://github.com/Issamna/StellasChoice">
-                      <button class="btn btn-secondary my-2 my-sm-0">Github</button>
-                    </a>
-                        <a href="https://raw.githubusercontent.com/Issamna/StellasChoice/master/baseapp/static/Logo.png">
-                      <button class="btn btn-secondary my-2 my-sm-0">Document</button>
-                    </a>
+                        <button class="btn btn-secondary my-2 my-sm-0">Github</button>
+                        </a>
+                        <a href="{% url 'pdf_view' %}">
+                            <button class="btn btn-secondary my-2 my-sm-0">Document</button>
+                        </a>
                     </div>
 
                 </div>

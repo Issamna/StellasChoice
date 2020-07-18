@@ -26,6 +26,6 @@ urlpatterns = [
     path('datavisual', baseapp_views.datavisual, name='datavisual'),
     path('about', baseapp_views.about, name='about'),
     path('alldogs', baseapp_views.alldogs, name='alldogs'),
-
+    path('pdf_view', baseapp_views.pdf_view, name='pdf_view'),
     path('admin/', admin.site.urls),
 ]
