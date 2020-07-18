@@ -1,0 +1,61 @@
+<!-- templates/alldogs.html -->
+{% extends 'base.html' %}
+
+{% block title %}Stella's choice{% endblock %}
+{% block content %}
+
+<div class="mainbody">
+    <h2>All Stella's Friends</h2>
+    <div class="table-responsive">
+        <table id="adoptable_dogs" class="table table-hover " style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Breed</th>
+                <th scope="col">Second Breed</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Stella's Pick</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in all_dogs %}
+                {% if entry.adoption_speed == 1 %}
+                <tr class="table-success">
+                {%else %}
+                <tr>
+                {% endif %}
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.breed_one.name }}</td>
+                    <td>{{ entry.breed_two.name }}</td>
+                    <td>{{ entry.age }}</td>
+                    {% if entry.gender == 1 %}
+                        <td>Male</td>
+                    {%else %}
+                        <td>Female</td>
+                    {% endif %}
+
+                    {% if entry.adoption_speed == 1 %}
+                    {% load static %}
+                        <td class="centered"><img src="{% static 'check.png' %}" width="30" height="30" class="centered"></td>
+                    {%else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
+{% block customjs %}
+<script>
+$(document).ready(function() {
+    $('#adoptable_dogs').DataTable( {
+        "order": [[ 5, "desc" ]]
+    });
+} );
+
+</script>
+
+{% endblock %}

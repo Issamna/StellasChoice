@@ -30,7 +30,6 @@ class Command(BaseCommand):
                         breed_one = Breed.objects.filter(csv_id=row[3])
                         breed_two = Breed.objects.filter(csv_id=row[4])
                         # Checks if breed two exists
-                        has_breed2 = 0
                         if len(breed_two) >= 1:
                             # Assign breed two
                             breed_two = breed_two[0]
@@ -38,6 +37,7 @@ class Command(BaseCommand):
                         else:
                             # Creates null value if doesn't
                             breed_two = None
+                            has_breed2 = 0
                         # Checks if breed one exists
                         if len(breed_one) >= 1:
                             # Assign breed one

@@ -24,5 +24,8 @@ admin.site.index_title = "Stella's Choice administration"
 urlpatterns = [
     path('', baseapp_views.home, name='home'),
     path('datavisual', baseapp_views.datavisual, name='datavisual'),
+    path('about', baseapp_views.about, name='about'),
+    path('alldogs', baseapp_views.alldogs, name='alldogs'),
+
     path('admin/', admin.site.urls),
 ]

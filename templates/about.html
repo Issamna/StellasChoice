@@ -1,0 +1,57 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+
+{% block title %}Stella's choice{% endblock %}
+{% block content %}
+
+<div class="mainbody">
+    <div class="container">
+        <h2>About</h2>
+        <div class="container about-box">
+            <div class="row">
+                <div class="col-12 col-sm-3 mx-auto">
+                    {% load static %}
+                    <img src="{% static 'Logo.png' %}"  class="img-fluid d-block">
+                    <div class="row d-flex justify-content-center buttons-box">
+                        <a href="https://github.com/Issamna/StellasChoice">
+                      <button class="btn btn-secondary my-2 my-sm-0">Github</button>
+                    </a>
+                        <a href="https://raw.githubusercontent.com/Issamna/StellasChoice/master/baseapp/static/Logo.png">
+                      <button class="btn btn-secondary my-2 my-sm-0">Document</button>
+                    </a>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-9">
+                    <h4>Stella's Choice is a breed recommendation service that matches adopters to adoptable dogs in a
+                        fictional organization called Stella's Shelter. This website is for my Computer Science
+                        Capstone project, the final assessment for my degree work. Below is the Project problem summary.
+                    </h4>
+                    <h3><b>Problem Summary</b></h3>
+                    <h4>Animal control departments across the country face the same issue: too many stray or abandoned dogs,
+                        many of whom are long term residents with low chance of being adopted. The city of Philadelphia alone
+                        had approximate 5,200 in take dogs in 2019 alone. Unfortunately, while adoption rates have improved over
+                        the last decade, approximately 7% of these dogs were euthanized in the last year.
+                    </h4>
+                    <h4>Stella’s Shelter is a no-kill shelter that strives to find homes for all dogs in Philadelphia. We also
+                        have the problem of too many long-term dogs residing in our shelters and foster system. Potential
+                        adopters are often seeking younger and pure-breed dogs, leaving older dogs and “mutts” in the
+                        system indefinitely. Additionally, we have numerous dogs, about 30% of intake, who either
+                        surrendered by the owner or returned due to behavioral and incompatible issues. This is a huge
+                        financial constraint on our limited budget. It also limits how many dogs we can take in from
+                        kill shelters and the city animal control. Stella’s Choice, a web-based personality matching service,
+                        can help increase the adoption rate for these dogs by increasing the visibility and value of these
+                        lesser-desired dogs as well as help match dogs that fit with the adopter’s lifestyle, increasing the retention rate.
+                    </h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+{% block customjs %}
+
+{% endblock %}

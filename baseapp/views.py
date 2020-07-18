@@ -107,3 +107,17 @@ def datavisual(request):
         'trainability_lists': trainability_lists,
         'size_lists': size_lists
     })
+
+def about(request):
+
+    return render(request, 'about.html', {
+
+    })
+
+def alldogs(request):
+    all_dogs = Dog.objects.all()
+    return render(request, 'alldogs.html', {
+        'all_dogs': all_dogs
+    })
+
+

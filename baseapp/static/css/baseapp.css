@@ -60,3 +60,13 @@ form h7{
 .top-row-data{
     margin-top: 20px;
 }
+
+.about-box{
+    margin-top: 30px;
+}
+.buttons-box{
+    margin-top: 20px;
+}
+.buttons-box button{
+    width: 120px;
+}
