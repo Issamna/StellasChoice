@@ -98,17 +98,13 @@ class Dog(models.Model):
     name = models.CharField(max_length=500)
     age = models.IntegerField(default=0)
     breed_one = models.ForeignKey(Breed, on_delete=models.CASCADE, null=False)
-    breed_two = models.ForeignKey(Breed, on_delete=models.CASCADE, null=True, related_name='breed_two')
+    breed_two = models.ForeignKey(Breed, on_delete=models.CASCADE, null=True, related_name='breed_two', default=None, blank=True)
     gender = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3)])
     maturity_size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(4)])
-    fur_length = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3)])
     vaccinated = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
     dewormed = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
     sterilized = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
     health = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(3)])
-    quantity = models.IntegerField(default=1)
-    fee = models.DecimalField(max_digits=10, default=0, decimal_places=2, )
-    description = models.TextField(default='')
     # Calculate adoption speed when model created
     adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)],
                                                  editable=False)
@@ -122,11 +118,13 @@ class Dog(models.Model):
 def get_adoption_speed(sender, instance, *args, **kwargs):
     age = instance.age
     gender = instance.gender
+    breed_two = instance.breed_two
     maturity_size = instance.maturity_size
-    fur_length = instance.fur_length
-    vaccinated = instance.vaccinated
-    sterilized = instance.sterilized
+    dewormed = instance.dewormed
     health = instance.health
+    has_breed2 = 0
+    if breed_two is not None:
+        has_breed2 = 1
 
-    instance.adoption_speed = predict_speed(age, gender, maturity_size, fur_length, vaccinated, sterilized, health)
+    instance.adoption_speed = predict_speed(age, has_breed2, gender, maturity_size, dewormed, health)
     return

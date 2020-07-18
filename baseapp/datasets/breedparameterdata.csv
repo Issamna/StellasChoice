@@ -1,0 +1,213 @@
+﻿1,Affenpinscher,3,4,3,2,3,1
+2,Afghan Hound,4,4,4,2,3,4
+3,Airedale Terrier,2,5,4,2,5,3
+4,Akita,3,4,2,4,4,4
+5,Alaskan Klee Kai,3,4,3,3,4,2
+6,Alaskan Malamute,2,5,4,3,4,4
+7,American Bulldog,2,4,3,3,3,4
+8,American English Coonhound,3,5,5,3,5,3
+9,American Eskimo Dog,4,4,5,4,4,2
+10,American Foxhound,2,5,5,4,4,3
+11,American Pit Bull Terrier,3,5,4,3,4,3
+12,American Staffordshire Terrier,2,4,4,3,4,3
+13,American Water Spaniel,3,4,4,3,4,3
+14,Anatolian Shepherd Dog,3,3,2,3,3,5
+15,Appenzeller Sennenhunde,3,4,4,3,4,3
+16,Australian Cattle Dog,3,5,4,3,4,3
+17,Australian Kelpie,3,4,3,3,5,3
+18,Australian Shepherd,3,5,4,2,5,3
+19,Australian Terrier,3,5,3,3,4,1
+20,Azawakh,3,3,3,3,3,3
+21,Barbet,3,4,4,2,3,3
+22,Basenji,4,3,5,3,4,2
+23,Basset Hound,3,2,5,4,4,2
+24,Beagle,3,5,5,3,4,2
+25,Bearded Collie,3,4,5,3,4,3
+26,Bedlington Terrier,4,4,5,3,4,3
+27,Belgian Malinois,3,5,4,3,4,4
+28,Belgian Sheepdog,4,5,5,3,4,4
+29,Belgian Tervuren,3,4,3,3,4,4
+30,Berger Picard,4,5,4,4,3,4
+31,Bernedoodle,3,4,4,3,4,3
+32,Bernese Mountain Dog,2,4,5,3,4,5
+33,Bichon Frise,4,4,5,2,3,2
+34,Mountain Cur,3,4,4,3,4,4
+35,Black Russian Terrier,3,5,4,3,4,5
+36,Black and Tan Coonhound,3,5,5,4,4,3
+37,Bloodhound,3,4,5,3,4,4
+38,Blue Lacy,3,5,3,3,5,3
+39,Bluetick Coonhound,3,5,4,3,4,3
+40,Boerboel,2,4,3,4,3,5
+41,Bolognese,3,3,5,2,4,1
+42,Border Collie,3,5,4,2,4,3
+43,Border Terrier,3,5,4,3,4,2
+44,Borzoi,4,2,4,3,4,5
+45,Boston Terrier,4,5,5,3,3,2
+46,Bouvier des Flandres,3,4,4,2,3,4
+47,Boxer,3,5,4,3,3,3
+48,Boykin Spaniel,3,5,4,2,4,3
+49,Bracco Italiano,3,4,4,3,3,4
+50,Briard,3,4,4,2,4,4
+51,Brittany,3,5,5,4,4,3
+52,Brussels Griffon,3,4,3,3,3,1
+53,Bull Terrier,3,5,5,4,4,2
+54,Bulldog,3,3,4,4,2,2
+55,Bullmastiff,3,4,4,4,3,5
+56,Cairn Terrier,4,5,5,3,4,1
+57,Canaan Dog,4,4,3,3,3,3
+58,Cane Corso,2,4,3,4,4,4
+59,Cardigan Welsh Corgi,4,3,4,3,3,2
+60,Catahoula Leopard Dog,2,4,3,3,3,4
+61,Caucasian Shepherd Dog,3,3,3,3,3,5
+62,Cavalier King Charles Spaniel,4,4,5,3,3,2
+63,Cesky Terrier,4,3,3,3,3,2
+64,Chesapeake Bay Retriever,3,5,3,4,3,3
+65,Chihuahua,3,3,4,3,3,1
+66,Chinese Crested,3,2,4,2,3,2
+67,Chinese Shar-Pei,3,2,2,3,3,3
+68,Chinook,3,3,5,3,3,4
+69,Chow Chow,3,2,1,2,2,4
+70,Clumber Spaniel,4,3,4,4,4,3
+71,Cockapoo,4,4,5,2,3,2
+72,Cocker Spaniel,4,3,4,3,4,2
+73,Collie,4,3,5,3,3,3
+74,Coton de Tulear,4,3,5,2,3,1
+75,Curly-Coated Retriever,3,4,4,3,4,3
+76,Dachshund,3,3,3,3,4,1
+77,Dalmatian,3,5,4,4,3,3
+78,Dandie Dinmont Terrier,3,3,4,3,3,1
+79,Doberman Pinscher,3,4,3,3,3,4
+80,Dogo Argentino,2,4,3,3,3,4
+81,Dogue de Bordeaux,3,3,3,4,3,4
+82,Dutch Shepherd,3,4,4,3,3,3
+83,English Cocker Spaniel,4,4,5,3,4,2
+84,English Foxhound,3,5,4,3,4,3
+85,English Setter,3,4,5,3,4,3
+86,English Springer Spaniel,3,5,5,2,4,3
+87,English Toy Spaniel,3,3,4,3,3,2
+88,Entlebucher Mountain Dog,3,5,4,3,4,3
+89,Field Spaniel,3,5,5,3,4,2
+90,Finnish Lapphund,4,5,5,3,4,3
+91,Finnish Spitz,3,5,5,3,4,3
+92,Flat-Coated Retriever,3,5,5,3,4,3
+93,Fox Terrier,3,5,4,2,4,2
+94,French Bulldog,3,4,4,3,3,2
+95,German Pinscher,3,5,3,3,4,3
+96,German Shepherd Dog,3,5,4,3,4,4
+97,German Shorthaired Pointer,2,5,4,3,5,3
+98,German Wirehaired Pointer,3,5,3,3,4,4
+99,Giant Schnauzer,2,4,3,3,4,4
+100,Glen of Imaal Terrier,3,4,4,3,4,1
+101,Goldador,4,5,5,3,3,4
+102,Golden Retriever,3,4,5,4,4,3
+103,Goldendoodle,3,4,5,3,3,4
+104,Gordon Setter,3,4,3,3,4,3
+105,Great Dane,2,5,5,4,3,5
+106,Great Pyrenees,3,5,4,3,4,5
+107,Greater Swiss Mountain Dog,3,4,5,3,3,5
+108,Greyhound,3,4,5,5,4,4
+109,Harrier,3,5,5,3,4,3
+110,Havanese,4,3,5,2,3,2
+111,Ibizan Hound,3,5,5,3,4,3
+112,Icelandic Sheepdog,3,4,3,3,3,3
+113,Irish Red and White Setter,3,5,4,2,4,3
+114,Irish Setter,3,5,5,3,5,4
+115,Irish Terrier,3,5,4,3,3,3
+116,Irish Water Spaniel,3,4,5,2,4,3
+117,Irish Wolfhound,2,3,5,2,3,5
+118,Italian Greyhound,3,4,5,3,4,2
+119,Jack Russell Terrier,3,5,5,3,4,2
+120,Japanese Chin,3,2,3,3,3,1
+121,Japanese Spitz,3,3,4,3,3,2
+122,Karelian Bear Dog,3,4,3,3,4,3
+123,Keeshond,4,4,5,3,3,3
+124,Kerry Blue Terrier,3,4,4,2,4,3
+125,Komondor,3,3,3,2,4,4
+126,Kooikerhondje,3,5,2,3,3,3
+127,Kuvasz,3,4,2,4,2,5
+128,Labradoodle,4,5,5,3,3,4
+129,Labrador Retriever,3,5,5,4,4,4
+130,Lagotto Romagnolo,3,4,3,2,3,2
+131,Lakeland Terrier,3,4,4,3,3,2
+132,Lancashire Heeler,3,4,3,3,3,1
+133,Leonberger,2,4,4,3,3,5
+134,Lhasa Apso,4,4,3,2,3,1
+135,Lowchen,3,4,5,3,4,1
+136,Maltese,3,3,4,2,3,1
+137,Maltese Shih Tzu,3,3,3,2,4,1
+138,Maltipoo,4,3,4,2,4,2
+139,Manchester Terrier,3,4,3,3,3,2
+140,Mastiff,2,4,4,4,2,5
+141,Miniature Pinscher,3,4,3,3,3,1
+142,Miniature Schnauzer,4,4,4,2,4,2
+143,Mudi,3,4,3,3,4,2
+144,Neapolitan Mastiff,2,3,3,4,2,5
+145,Newfoundland,3,3,5,3,4,5
+146,Norfolk Terrier,4,4,5,3,3,1
+147,Norwegian Buhund,3,5,4,3,3,3
+148,Norwegian Elkhound,4,4,4,3,4,3
+149,Norwegian Lundehund,3,5,5,3,3,3
+150,Norwich Terrier,4,5,5,3,4,1
+151,Nova Scotia Duck Tolling Retriever,4,5,5,3,4,3
+152,Old English Sheepdog,4,4,4,3,3,4
+153,Otterhound,3,5,5,3,4,4
+154,Papillon,3,4,4,2,3,1
+155,Peekapoo,4,3,4,2,3,1
+156,Pekingese,3,2,3,2,4,1
+157,Pembroke Welsh Corgi,4,4,4,3,3,2
+158,Petit Basset Griffon Vendeen,3,5,5,3,4,2
+159,Pharaoh Hound,4,3,5,3,4,3
+160,Plott,2,4,4,3,4,3
+161,Pocket Beagle,3,4,5,3,4,2
+162,Pointer,2,5,5,3,5,3
+163,Polish Lowland Sheepdog,4,4,4,2,3,3
+164,Pomeranian,3,3,3,3,3,1
+165,Pomsky,3,3,3,3,4,2
+166,Poodle,4,4,5,2,4,4
+167,Portuguese Water Dog,3,5,5,2,4,3
+168,Pug,3,4,4,3,2,2
+169,Puggle,4,3,5,4,3,2
+170,Puli,3,5,4,2,4,3
+171,Pyrenean Shepherd,3,5,4,2,3,2
+172,Rat Terrier,3,5,4,3,3,1
+173,Redbone Coonhound,3,5,4,3,4,3
+174,Rhodesian Ridgeback,3,5,4,3,3,4
+175,Rottweiler,2,4,4,4,4,3
+176,Saint Bernard,3,3,5,3,2,5
+177,Saluki,2,4,4,2,4,4
+178,Samoyed,3,4,5,3,4,3
+179,Schipperke,3,5,3,4,3,1
+180,Schnoodle,3,4,4,3,3,4
+181,Scottish Deerhound,3,5,4,3,3,5
+182,Scottish Terrier,3,4,4,2,3,2
+183,Sealyham Terrier,4,4,4,3,3,2
+184,Shetland Sheepdog,3,4,5,3,3,1
+185,Shiba Inu,4,3,3,3,4,2
+186,Shih Tzu,3,3,5,2,3,1
+187,Siberian Husky,3,5,5,3,4,3
+188,Silken Windhound,4,4,4,3,4,3
+189,Silky Terrier,3,4,3,3,4,1
+190,Skye Terrier,4,4,4,3,4,2
+191,Sloughi,3,4,4,3,3,4
+192,Small Munsterlander Pointer,3,5,5,3,4,3
+193,Soft Coated Wheaten Terrier,3,4,5,3,3,3
+194,Stabyhoun,3,4,4,3,4,3
+195,Staffordshire Bull Terrier,2,4,4,4,3,2
+196,Standard Schnauzer,3,5,3,2,4,3
+197,Sussex Spaniel,4,2,5,3,3,2
+198,Swedish Vallhund,3,5,4,4,3,3
+199,Tibetan Mastiff,3,3,4,3,3,5
+200,Tibetan Spaniel,3,4,4,3,4,1
+201,Tibetan Terrier,4,5,4,2,3,2
+202,Toy Fox Terrier,3,5,4,3,4,1
+203,Treeing Tennessee Brindle,2,4,4,4,3,3
+204,Treeing Walker Coonhound,3,4,4,3,4,4
+205,Vizsla,3,5,5,3,4,3
+206,Weimaraner,3,5,4,4,4,4
+207,Welsh Springer Spaniel,4,5,4,3,4,3
+208,Welsh Terrier,3,5,5,3,4,2
+209,West Highland White Terrier,4,4,4,3,4,2
+210,Whippet,3,4,5,3,4,3
+211,Wirehaired Pointing Griffon,3,4,5,2,4,3
+212,Yorkipoo,4,4,4,2,4,1
+213,Yorkshire Terrier,3,5,3,2,3,1

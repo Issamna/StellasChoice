@@ -30,9 +30,11 @@ class Command(BaseCommand):
                         breed_one = Breed.objects.filter(csv_id=row[3])
                         breed_two = Breed.objects.filter(csv_id=row[4])
                         # Checks if breed two exists
+                        has_breed2 = 0
                         if len(breed_two) >= 1:
                             # Assign breed two
                             breed_two = breed_two[0]
+                            has_breed2 = 1
                         else:
                             # Creates null value if doesn't
                             breed_two = None
@@ -49,15 +51,10 @@ class Command(BaseCommand):
                                 breed_two=breed_two,
                                 gender=row[5],
                                 maturity_size=row[9],
-                                fur_length=row[10],
                                 vaccinated=row[11],
                                 dewormed=row[12],
                                 sterilized=row[13],
                                 health=row[14],
-                                quantity=row[15],
-                                fee=row[16],
-                                description=row[20],
                                 # Predict speed using parameters
-                                adoption_speed=predict_speed(row[2], row[5], row[9], row[10],
-                                                             row[11], row[13], row[14])
+                                adoption_speed=predict_speed(row[2], has_breed2, row[5], row[9], row[12], row[14])
                             )
