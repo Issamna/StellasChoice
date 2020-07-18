@@ -25,8 +25,7 @@ SECRET_KEY = 'w4hvjmlg04pep4r2j6=x=k%px7%qrd@13b!xsaok&_41%*q-h4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -126,9 +125,25 @@ AUTH_USER_MODEL = 'baseapp.User'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'console': {
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'info.log', #changed file location
         },
     },
     'loggers': {
@@ -137,7 +152,7 @@ LOGGING = {
             'level': 'INFO',
         },
         'baseapp': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG',
         },
     },

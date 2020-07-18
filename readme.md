@@ -1,146 +1,103 @@
-Installation notes
-Microsoft Windows [Version 10.0.18362.900]
-(c) 2019 Microsoft Corporation. All rights reserved.
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>python --version
-Python 3.8.3
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>python -m django --version
-C:\Users\issam\Documents\WGU\Capstone\Stella's Choice\venv\Scripts\python.exe: No module named django
+# Requirements
+This app requires Python 3.7 or higher and pip for dependency control.
+See requirements.txt for all Python dependencies for this project.
+Some libraries have additional build dependencies.
+* scikit-learn:
+    * Cython >= 0.28.5
+    * A C/C++ compiler and a matching OpenMP runtime library.
+    * See https://scikit-learn.org/stable/developers/advanced_installation.html#platform-specific-instructions for more information depending on your platform.
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>pip
+# Installation Notes (Dev)
+1. Clone project into your working directory
+2. Create your virtual environment:
+    * `/path/to/python3.7 -m venv /path/to/project_root/venv`
+    * (Optional) If using Pycharm, add the new venv interpreter to project settings (Preferences -> Project -> Project Interpreter then select newly created interpreter to the list)
+3. Ensure you're "sourced" into your virtual environment with source:
+    * `/path/to/project_root/venv/bin/activate`
+    * Your terminal should look something like `(venv) {machinename}:StellasChoice {user}`with `(venv)` prepending your typical console output
+4. Install Python dependencies using:
+    * `pip install -r /path/to/project_root/requirements.txt`
+    * As stated above, some dependencies might have additional system requirements.
+5. Create your Django migrations and SQLite database with the following Django commands:
+    * `python manage.py makemigrations`
+    * `python manage.py migrate`
+6. Populate the database with the following:
+    * `python manage.py TODO`
+7. App can now be run with Django command:
+    * `python manage.py runserver`
 
-Usage:
-  pip <command> [options]
+# Deployment Notes
+The following are notes from deploying with Nginx/UWSGI on an AWS machine running Amazon Linux AMI. We are running UWSGI in "Emperor" mode
 
-Commands:
-  install                     Install packages.
-  download                    Download packages.
-  uninstall                   Uninstall packages.
-  freeze                      Output installed packages in requirements format.
-  list                        List installed packages.
-  show                        Show information about installed packages.
-  check                       Verify installed packages have compatible dependencies.
-  config                      Manage local and global configuration.
-  search                      Search PyPI for packages.
-  wheel                       Build wheels from your requirements.
-  hash                        Compute hashes of package archives.
-  completion                  A helper command used for command completion.
-  help                        Show help for commands.
+### UWSGI
+See https://uwsgi-docs.readthedocs.io/en/latest/Emperor.html for reference to UWSGI in Emperor mode
 
-General Options:
-  -h, --help                  Show help.
-  --isolated                  Run pip in an isolated mode, ignoring environment variables and user configuration.
-  -v, --verbose               Give more output. Option is additive, and can be used up to 3 times.
-  -V, --version               Show version and exit.
-  -q, --quiet                 Give less output. Option is additive, and can be used up to 3 times (corresponding to WARNING, ERROR, and CRITICAL logging levels).
-  --log <path>                Path to a verbose appending log.
-  --proxy <proxy>             Specify a proxy in the form [user:passwd@]proxy.server:port.
-  --retries <retries>         Maximum number of retries each connection should attempt (default 5 times).
-  --timeout <sec>             Set the socket timeout (default 15 seconds).
-  --exists-action <action>    Default action when a path already exists: (s)witch, (i)gnore, (w)ipe, (b)ackup, (a)bort).
-  --trusted-host <hostname>   Mark this host as trusted, even though it does not have valid or any HTTPS.
-  --cert <path>               Path to alternate CA bundle.
-  --client-cert <path>        Path to SSL client certificate, a single file containing the private key and the certificate in PEM format.
-  --cache-dir <dir>           Store the cache data in <dir>.
-  --no-cache-dir              Disable the cache.
-  --disable-pip-version-check
-                              Don't periodically check PyPI to determine whether a new version of pip is available for download. Implied with --no-index.
-  --no-color                  Suppress colored output
+Installed UWSGI system-wide with the following command:
+* `pip3.7 install uwsgi`
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>python -m pip install Django
-Collecting Django
-  Downloading https://files.pythonhosted.org/packages/ca/ab/5e004afa025a6fb640c6e983d4983e6507421ff01be224da79ab7de7a21f/Django-3.0.8-py3-none-any.whl (7.5MB)
-    100% |████████████████████████████████| 7.5MB 3.3MB/s
-Collecting sqlparse>=0.2.2 (from Django)
-  Using cached https://files.pythonhosted.org/packages/85/ee/6e821932f413a5c4b76be9c5936e313e4fc626b33f16e027866e1d60f588/sqlparse-0.3.1-py2.py3-none-any.whl
-Collecting pytz (from Django)
-  Downloading https://files.pythonhosted.org/packages/4f/a4/879454d49688e2fad93e59d7d4efda580b783c745fd2ec2a3adf87b0808d/pytz-2020.1-py2.py3-none-any.whl (510kB)
-    100% |████████████████████████████████| 512kB 7.9MB/s
-Collecting asgiref~=3.2 (from Django)
-  Downloading https://files.pythonhosted.org/packages/d5/eb/64725b25f991010307fd18a9e0c1f0e6dff2f03622fc4bcbcdb2244f60d6/asgiref-3.2.10-py3-none-any.whl
-Installing collected packages: sqlparse, pytz, asgiref, Django
-Successfully installed Django-3.0.8 asgiref-3.2.10 pytz-2020.1 sqlparse-0.3.1
+The command to run all deployable apps (including this one) is:
+* `/usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid ec2-user --gid ec2-user`
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>python -m django --version
-3.0.8
+The settings for this app in particular are defined in `/etc/uwsgi/vassals/stellaschoice_uwsgi.ini` and the contents are as follows:
+```
+[uwsgi]
+route-run = fixpathinfo:
+project = stellaschoice
+chdir = /var/www/vhosts/stellaschoice
+home = /var/www/vhosts/stellaschoice/venv
+module = stellachoice.wsgi:application
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice> django-admin startproject stellachoice
+master = true
+processes = 5
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git init
-Initialized empty Git repository in C:/Users/issam/Documents/WGU/Capstone/Stella's Choice/.git/
+socket = /var/www/uwsgi/stellaschoice.sock
+chown-socket = ec2-user:ec2-user
+chmod-socket = 666
+vacuum = true
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git status
-On branch master
+touch-reload = /var/www/vhosts/stellaschoice/stellachoice/wsgi.py
+```
 
-No commits yet
+Note: The touch-reload option will allow us to automatically redeploy the app to reflect new changes. Simply re-upload changes and use command `touch /var/www/vhosts/stellaschoice/stellachoice/wsgi.py` to automatically reload the application.
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        .idea/
-        manage.py
-        stellachoice/
-        venv/
+### Python:
+#### Installation Details
+* Project code lives in `/var/www/vhosts/stellaschoice`
+* Virtual environment created at `/var/www/vhosta/stellaschoice/venv`
 
-nothing added to commit but untracked files present (use "git add" to track)
+#### Steps
+Create the virtual environment:
+* `/usr/local/bin/python3.7 -m venv /var/www/vhosts/stellaschoic/venv`
+ 
+Install required dependencies by entering the virtual environment then installing packages from our requirements.txt file:
+ 
+* `source /var/www/vhosts/stellaschoic/venv/bin/activate`
+* `pip install -r /var/www/vhosts/stellaschoice/requirements.txt`
+  
+Collect static files for Django to serve with the following Django command. This will compile all static components (CSS, JS, etc) to 
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git status
-On branch master
-
-No commits yet
-
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-        new file:   stellachoice/.gitignore
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   stellachoice/.gitignore
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        .idea/
-        manage.py
-        stellachoice/__init__.py
-        stellachoice/asgi.py
-        stellachoice/settings.py
-        stellachoice/urls.py
-        stellachoice/wsgi.py
-        venv/
+* `python /var/www/vhosts/stellaschoice/manage.py collectstatic`
+  
+(Optional) Run within virtual environment to make sure installation works correctly (site will be inaccessible but can check terminal for errors)
+ 
+* `python /var/www/vhosts/stellaschoice/manage.py runserver`
 
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git add .gitignore
+### Nginx: 
+The following is the relevant section of the Nginx server config. This will deploy the python app to `https://issamahmed.com/stellaschoice`. Nginx will serve the project's static files (JS, CSS, images) at `https://issamahmed.com/scstatic/*` 
 
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git status
-On branch master
+```
+location /stellaschoice {
+  include /etc/nginx/uwsgi_params;
+  uwsgi_pass unix:/var/www/uwsgi/stellaschoice.sock;
+  uwsgi_param SCRIPT_NAME /stellaschoice;
+}
 
-No commits yet
+location /scstatic {
+  alias /var/www/vhosts/stellaschoice/scstatic; # Django static files
+}
+```
 
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-        new file:   .gitignore
+Then run the following to restart Nginx with the changes:
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        manage.py
-        stellachoice/
-
-
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git add *
-
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>git commit -m "fresh django install"
-
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: unable to auto-detect email address (got 'issam@LAPTOP-50C24O6O.(none)')
-
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>pip freeze > requirements.txt
-
-(venv) C:\Users\issam\Documents\WGU\Capstone\Stella's Choice>
+`sudo service nginx restart`

@@ -11,7 +11,7 @@ def home(request):
 
     # Form submit
     if request.method == 'POST':
-        # logger.debug(request.POST)
+        logger.info(request.POST)
         # Get values
         postValues = request.POST.copy()
         adaptability = int(postValues['adaptabilitySelect'])
