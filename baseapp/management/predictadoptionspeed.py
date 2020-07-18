@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.naive_bayes import GaussianNB
 
 
-def predict_speed(age, gender, size, fur_length, vaccinated, sterilized, health):
+def predict_speed(age, breed2, gender, size, fur_length, dewormed, sterilized, health):
     adoption_speed = pd.read_csv('baseapp/datasets/aspeed.csv')
 
     adoption_speed = adoption_speed[adoption_speed.Type != 2]
@@ -28,7 +28,7 @@ def predict_speed(age, gender, size, fur_length, vaccinated, sterilized, health)
     gnb = GaussianNB()
     gnb.fit(X, y)
 
-    to_predict = [[age, gender, size, fur_length, vaccinated, sterilized, health]]
+    to_predict = [[age, breed2, gender, size, dewormed, health]]
     to_predict = sc.transform(to_predict)
     adoption_speed_predicted = gnb.predict(to_predict)
     return adoption_speed_predicted[0]

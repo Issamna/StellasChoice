@@ -23,19 +23,15 @@ def predict_breed(adaptability, energy, friendliness, health_grooming, trainabil
     # Fill breed id array
     for x in range(213):
         breed_id.append(x)
-    # Create bins
+
     breeds['Breed'] = pd.cut(breeds['Breed'], bins=213, labels=breed_id)
     label_breed = LabelEncoder()
     breeds['Breed'] = label_breed.fit_transform(breeds['Breed'])
-
-    #
     x = breeds.drop('Breed', 1)
     y = breeds['Breed']
-
     # Scale
     sc = StandardScaler()
     x = sc.fit_transform(x)
-
     # Create RandomForest
     rfc = RandomForestClassifier(n_estimators=200)
     rfc.fit(x, y)
