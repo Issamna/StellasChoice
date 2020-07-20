@@ -6,7 +6,6 @@ from baseapp.models import Dog
 from baseapp.models import Breed
 from django.db import connection
 from django.conf import settings
-from baseapp.management.predictadoptionspeed import predict_speed
 
 
 class Command(BaseCommand):
@@ -19,8 +18,10 @@ class Command(BaseCommand):
             with connection.cursor() as cursor:
                 cursor.execute("delete from baseapp_dog", [])
             # get csv file data
-            csv_file_path = "baseapp/datasets/test.csv"
+            csv_file_path = "baseapp/datasets/uploadtest.csv"
             with open(csv_file_path, encoding='utf8') as f:
+                total_count = 0
+                bad_count = 0
                 reader = csv.reader(f)
                 # Read through each row
                 for row in reader:
@@ -42,6 +43,17 @@ class Command(BaseCommand):
                         if len(breed_one) >= 1:
                             # Assign breed one
                             breed_one = breed_one[0]
+
+                            if row[5] == '1':
+                                gender = 0
+                            else:
+                                gender = 1
+
+                            if row[12] == '1':
+                                dewormed = 0
+                            else:
+                                dewormed = 1
+
                             # Create dog and insert to DB
                             dog = Dog.objects.create(
                                 pet_id=row[21],
@@ -49,12 +61,19 @@ class Command(BaseCommand):
                                 age=row[2],
                                 breed_one=breed_one,
                                 breed_two=breed_two,
-                                gender=row[5],
+                                gender=gender,
                                 maturity_size=row[9],
                                 vaccinated=row[11],
-                                dewormed=row[12],
+                                dewormed=dewormed,
                                 sterilized=row[13],
                                 health=row[14],
-                                # Predict speed using parameters
-                                adoption_speed=predict_speed(row[2], has_breed2, row[5], row[9], row[12], row[14])
+
                             )
+                            # debug - to see how many right and wrong
+                            total_count+=1
+                            if int(row[23]) != dog.adoption_speed:
+                                bad_count+=1
+                # debug - to see how many right and wrong
+                print("results")
+                print(bad_count)
+                print(total_count)

@@ -23,7 +23,6 @@ data = data[data.Quantity == 1]
 data = data.drop(['Type', 'Quantity', 'Name', 'Color1', 'Color2', 'Color3', 'Fee', 'State',
                   'RescuerID', 'VideoAmt', 'Description', 'PetID', 'PhotoAmt'], axis=1)
 
-
 # Remove where breed1 equals 0 or 307
 data = data[data.Breed1 != 0]
 data = data[data.Breed1 != 307]

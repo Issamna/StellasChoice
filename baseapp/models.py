@@ -99,15 +99,16 @@ class Dog(models.Model):
     age = models.IntegerField(default=0)
     breed_one = models.ForeignKey(Breed, on_delete=models.CASCADE, null=False)
     breed_two = models.ForeignKey(Breed, on_delete=models.CASCADE, null=True, related_name='breed_two', default=None, blank=True)
-    gender = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3)])
+    gender = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(1)])
     maturity_size = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(4)])
     vaccinated = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
-    dewormed = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
+    dewormed = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(1)])
     sterilized = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(3)])
     health = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(3)])
     # Calculate adoption speed when model created
     adoption_speed = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)],
                                                  editable=False)
+
 
     def __str__(self):
         return self.name
@@ -122,9 +123,13 @@ def get_adoption_speed(sender, instance, *args, **kwargs):
     maturity_size = instance.maturity_size
     dewormed = instance.dewormed
     health = instance.health
-    has_breed2 = 0
+
     if breed_two is not None:
         has_breed2 = 1
+    else:
+        has_breed2 = 0
 
+    # Predict Speed
     instance.adoption_speed = predict_speed(age, has_breed2, gender, maturity_size, dewormed, health)
+
     return

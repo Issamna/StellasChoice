@@ -3,7 +3,9 @@ import logging
 from baseapp.management.predictbreed import predict_breed
 from baseapp.models import Breed, Dog
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from baseapp.management.predictadoptionspeed import predict_speed
 
 logger = logging.getLogger(__name__)
 
@@ -94,6 +96,14 @@ def datavisual(request):
         size_count[breed.size - 1] += 1
         size_lists[breed.size - 1].append(breed.name)
 
+    # Get all adoptable dogs
+    all_dogs = Dog.objects.all()
+    # Create empty arrays to transfer data
+    adoption_speed_count = [0, 0]
+    # Loop through data and fill arrays
+    for dog in all_dogs:
+        adoption_speed_count[dog.adoption_speed - 1] += 1
+    adoption_speed_count = [adoption_speed_count[1],adoption_speed_count[0]]
     # Return datavisual page with data
     return render(request, 'datavisual.html', {
         'adaptability_count': adaptability_count,
@@ -107,7 +117,8 @@ def datavisual(request):
         'friendliness_lists': friendliness_lists,
         'health_grooming_lists': health_grooming_lists,
         'trainability_lists': trainability_lists,
-        'size_lists': size_lists
+        'size_lists': size_lists,
+        'adoption_speed_count': adoption_speed_count
     })
 
 
@@ -134,3 +145,23 @@ def pdf_view(request):
             return response
     else:
         return HttpResponseNotFound('The requested pdf was not found in our server.')
+
+
+@csrf_exempt
+def ajax_adoption_speed(request):
+    json_data = {}
+    postValues = request.POST.copy()
+    age = int(postValues['age'])
+    breed2 = int(postValues['mixed'])
+    gender = int(postValues['gender'])
+    size = int(postValues['size'])
+    dewormed = int(postValues['dewormed'])
+    health = int(postValues['health'])
+    adoption_speed = predict_speed(age, breed2, gender, size, dewormed, health)
+    if adoption_speed == 0:
+        adoption_speed_return = "under"
+    else:
+        adoption_speed_return = "over"
+    json_data['answer'] = adoption_speed_return
+    return JsonResponse(json_data, safe=False)
+

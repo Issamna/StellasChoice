@@ -21,8 +21,19 @@ body{
 .form-box{
     margin-top: 20px;
 }
+
 .custom-select{
+    width: 150px;
+}
+.age-select{
+    width: 150px;
+    margin-left: -10px;
+}
+.home-custom-select{
     width: 75px;
+}
+.age-select-label{
+    margin-left: -10px;
 }
 .select-cols{
     margin-bottom: 20px;
@@ -69,4 +80,11 @@ form h7{
 }
 .buttons-box button{
     width: 120px;
+}
+
+footer{
+    height: 100px
+}
+.top-margin{
+    margin-top: 20px;
 }

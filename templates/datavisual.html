@@ -478,11 +478,219 @@
                   </p>
               </div>
           </div>
-          <div class="tab-pane fade" id="adoptionspeed" role="tabpanel" aria-labelledby="adoptionspeed-tab">
-              <h2>coming soon</h2>
+          <div class="tab-pane fade " id="adoptionspeed" role="tabpanel" aria-labelledby="adoptionspeed-tab">
+               <div class="container">
+                    <div class="row top-row-data">
+                        <h2>Fill the following:</h2>
+                    </div>
+                    <div class="row">
+                        <h4>Stella predicts if a dog will remain in the shelter less than 30 days or more </h4>
+                    </div>
+                    <form method="">
+                      <div class="form-row align-items-center">
+                          <div class="form-group col-md-2 my-1 select-col">
+                            <h7 for="ageSelect" class="age-select-label">Age (Months)</h7>
+                            <input type="number" min="0" class="form-control age-select" id="ageSelect"  value="0">
+                          </div>
+                          <div class="form-group col-md-2 my-1 select-col">
+                              <div class="row">
+                                  <h7 for="mixedSelect">Mixed Breed?</h7>
+                              </div>
+                              <div class="row">
+                                  <select name="mixedSelect" class="custom-select" id="mixedSelect">
+                                      <option value="0">No</option>
+                                      <option value="1">Yes</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="form-group col-md-2 my-1 select-col">
+                              <div class="row">
+                                  <h7 for="genderSelect">Gender</h7>
+                              </div>
+                              <div class="row">
+                                  <select name="genderSelect" class="custom-select" id="genderSelect">
+                                      <option value="1">Male</option>
+                                      <option value="2">Female</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="form-group col-md-2 my-1 select-col">
+                              <div class="row">
+                                  <h7 for="sizeSelect">Size</h7>
+                              </div>
+                              <div class="row">
+                                  <select name="sizeSelect" class="custom-select" id="sizeSelect">
+                                      <option value="1">Extra Small</option>
+                                      <option value="1">Small</option>
+                                      <option value="2">Medium</option>
+                                      <option value="3">Large</option>
+                                      <option value="4">Extra Large</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="form-group col-md-2 my-1 select-col">
+                              <div class="row">
+                                  <h7 for="dewormedSelect">Dewormed?</h7>
+                              </div>
+                              <div class="row">
+                                  <select name="dewormedSelect" class="custom-select" id="dewormedSelect">
+                                      <option value="0">Yes</option>
+                                      <option value="1">No</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="form-group col-md-2 my-1 select-col">
+                              <div class="row">
+                                  <h7 for="healthSelect">Health</h7>
+                              </div>
+                              <div class="row">
+                                  <select name="healthSelect" class="custom-select" id="healthSelect">
+                                      <option value="1">Healthy</option>
+                                      <option value="2">Minor Issues</option>
+                                      <option value="3">Serious Issues</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-auto my-1">
+                              <button type="submit" value="Submit"  class="btn btn-dark" id="subCheck" data-toggle="modal" data-target="#exampleModal">Submit</button>
+                          </div>
+                      </div>
+                    </form>
+                    <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Stella's says</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p id="predictedResult"></p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+               </div>
+               <div class="container">
+                   <h2>How Stella's Prediction Works</h2>
+                   <div class="row top-margin">
+                       <div class="col-12 col-md-6">
+                           <h4><b>Dataset</b></h4>
+                           <p>The adoptable dog data set originates from Kaggle. Using the Panda library, the data was cleaned
+                               by first removing cat data. The data included some instances of multiple dogs in a listing, and
+                               these values were removed. Similarly, other columns deemed unnecessary were dropped, such as
+                               name, color, zip, rescuer ID, video amount, description, fee, pet ID, and photo amount. Several other
+                               values required changes for standardization.
+                           </p>
+                           <p>A correlation heat map to assess if there is any 1 to 1 relationship in the data. Most of
+                               the correlation exists between the vaccinated, dewormed, and sterilized columns. The
+                               correlation makes sense since most dogs get all three done simultaneously and standard
+                               in most shelters—however, the highest value at 0.66, no changes were required. Most of
+                               the correlation exists between the vaccinated, dewormed, and sterilized columns. The
+                               correlation makes sense since most dogs get all three done simultaneously and
+                               standard in most shelters—however, the highest value at 0.66, no changes were required. </p>
+                       </div>
+                       <div class="col-12 col-md-6 justify-content-center">
+                            {% load static %}
+                            <img src="{% static 'images/correlation.jpg' %}"  class="img-fluid mx-auto d-block" width="400px">
+                       </div>
+
+                   </div>
+                   <div class="row top-margin">
+                        <div class="col-12">
+                           <h4><b>Data Exploration</b></h4>
+                           <p class="top-margin">The graph below exhibits the distribution of adoptable speeds in the training data and currently in the database.
+                               Zero represents less than 30 days, while one represents longer than 30 days.
+                               It is about even in the test data, but most dogs tend to stay longer in the shelter.
+                           </p>
+                            <div class="row top-margin">
+                                <div class="col-12 col-md-6">
+                                    <img src="{% static 'images/alladoptionspeeds.png' %}"  class="img-fluid mx-auto d-block" width="400px">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <canvas id="aggChart" height="190"></canvas>
+                                </div>
+                            </div>
+                           <p class="top-margin">The following graphs explore the raw data on age and mixed breed for more helpful insight.
+                               These factors were included in the hypothesis, speculated to be essential in determining the adoption speed. The age
+                               distribution shows a large portion of data is young dogs. Using the heat map, young dogs, especially under a year old,
+                               are more likely to be adopted under 30 days. Dogs from ages one to eight tend to stay in the shelter longer. This data
+                               confirms that adopters tend to go for puppies over adult dogs, as speculated in the hypothesis. Surprisingly, dog's aged
+                               nine and ten have an increased likelihood of getting adopted early.
+                           </p>
+                            <div class="row top-margin">
+                                <div class="col-12 col-md-6">
+                                    <img src="{% static 'images/Age distribution.png' %}"  class="img-fluid mx-auto d-block" width="450px">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <img src="{% static 'images/speed by age.png' %}"  class="img-fluid mx-auto d-block" width="410px">
+                                </div>
+                            </div>
+                            <div class="row top-margin">
+                                <div class="col-12 col-md-6">
+                                    <img src="{% static 'images/mixed.png' %}"  class="img-fluid mx-auto d-block" width="450px">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <img src="{% static 'images/mixed speed.png' %}"  class="img-fluid mx-auto d-block" width="410px">
+                                </div>
+                            </div>
+                            <p class="top-margin">The data has slightly more pure breeds than mixed breeds, as seen in the above distribution graphs.
+                                However, when comparing adoption speeds, pure breeds are more likely to be adopted under 30 days. The
+                                second graph strengthens our hypothesis that adopters tend to adopt pure breeds. Visualization created
+                                was essential to explore the data and create better prediction models.
+                            </p>
+
+                        </div>
+                   </div>
+                   <div class="row top-margin">
+                       <div class="col-12 col-md-6">
+                           <h4><b>Dataset</b></h4>
+                           <p class="top-margin">The cleaned data first went through a preprocess and normalized. Next, a descriptive method,
+                               logistic regression model, is applied for further analysis of the data. This analysis is
+                               essential to highlight the features that are more relevant to the prediction outcome. It
+                               provided better insight and improved the prediction model.
+                           </p>
+                           <p>The positive bars show greater relevance, while the negative show weaker relevance. The
+                               weaker factors, breed1, fur length, vaccinated, and sterilized, are discarded. The data
+                               set was then renormalized and split into a training and testing set. The predictive model
+                               uses Gaussian Naïve Bayes (a non-descriptive method) on the training data. This is a machine-learning
+                                algorithm used to give a prediction.
+                           </p>
+                           <p>
+
+                           </p>
+                       </div>
+                       <div class="col-12 col-md-6 justify-content-center">
+                            {% load static %}
+                            <img src="{% static 'images/logistic regression.jpg' %}"  class="img-fluid mx-auto d-block" width="400px">
+                       </div>
+                   </div>
+                   <div class="row top-margin">
+                       <div class="col-12  col-md-6">
+                           <h4><b>Accuracy</b></h4>
+                           <p>The hypothesis was that the model could predict how long a dog will stay in the shelter.
+                               The prediction model has an accuracy of about 64%, above the required 50% level. Further data supports
+                               the fact that age, and being a "mutt" are significant factors in determining the adoption speed.
+                               By splitting the training data for testing, the confusion matrix highlight results.
+                           </p>
+                           <h4 class="top-margin">For more information you can read my capstone project.</h4>
+                           <div class="col-12 justify-content-center">
+                                <a class="top-margin justify-content-center" href="{% url 'pdf_view' %}">
+                                    <button class="btn btn-secondary my-2 my-sm-0 ">Document</button>
+                                </a>
+                           </div>
+                       </div>
+                       <div class="col-12 col-md-6 justify-content-center">
+                            {% load static %}
+                            <img src="{% static 'images/confusion.png' %}"  class="img-fluid mx-auto d-block" width="400px">
+                       </div>
+                   </div>
+               </div>
           </div>
-
-
         </div>
     </div>
 
@@ -491,6 +699,7 @@
 </div>
 {% endblock %}
 {% block customjs %}
+{% load static %}
 <!--Scrip to populate graphs with data-->
 <script>
 
@@ -730,6 +939,70 @@ var sizeChart = new Chart(ctx, {
         }
     }
 });
+
+</script>
+<script>
+
+var ctx = document.getElementById('aggChart').getContext('2d');
+var aggChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['0', '1'],
+        datasets: [{
+            label: 'Currently in Database',
+            data: [{% for entry in adoption_speed_count %} '{{ entry }}', {% endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+    $("#subCheck").click(function(e) {
+        e.preventDefault();
+        var age = document.getElementById("ageSelect").value
+        if(age >= 0){
+            var mixed = document.getElementById("mixedSelect").value
+            var gender = document.getElementById("genderSelect").value
+            var size = document.getElementById("sizeSelect").value
+            var dewormed = document.getElementById("dewormedSelect").value
+            var health = document.getElementById("healthSelect").value
+
+            $.ajax({
+                url: "{% url 'get_prediction' %}",
+                type: "POST",
+                async: false,
+                data: {age: age, mixed: mixed, gender: gender, size: size, dewormed: dewormed, health: health },
+                success: function(data){
+                    var messagestart = "The dog will remain "
+                    var messageend = " 30 days in the shelters"
+                    $("#predictedResult").html(messagestart+data.answer+messageend);
+                }
+            })
+         }
+         else{
+            $("#predictedResult").html("You put in a negative age.");
+         }
+    });
+
 
 </script>
 {% endblock %}

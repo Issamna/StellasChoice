@@ -27,5 +27,6 @@ urlpatterns = [
     path('about', baseapp_views.about, name='about'),
     path('alldogs', baseapp_views.alldogs, name='alldogs'),
     path('pdf_view', baseapp_views.pdf_view, name='pdf_view'),
+    path('get_prediction', baseapp_views.ajax_adoption_speed, name='get_prediction'),
     path('admin/', admin.site.urls),
 ]
