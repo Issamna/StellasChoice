@@ -5,6 +5,7 @@
 {% block content %}
 
 <div class="mainbody">
+    <!--Template to display all data-->
     <h2>Data Dashboard</h2>
     <div class="container">
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
@@ -37,6 +38,7 @@
                 <div class="row top-row-data">
                   <div class="col-12 col-sm-6 justify-content-center">
                       <h3>Adaptability is the average of the following:</h3>
+                      <p>1 = Low   5 = High</p>
                       <ul>
                           <li>Adapts well to apartment living</li>
                           <li>Good for novice owners</li>
@@ -113,6 +115,7 @@
                 <div class="row top-row-data">
                   <div class="col-12 col-sm-6 justify-content-center">
                       <h3>Energy is the average of breeds physical needs:</h3>
+                      <p>1 = Low   5 = High</p>
                       <ul>
                           <li>Energy level</li>
                           <li>Intensity</li>
@@ -186,6 +189,7 @@
                 <div class="row top-row-data">
                   <div class="col-12 col-sm-6 justify-content-center">
                       <h3>Friendliness is the average of the following:</h3>
+                      <p>1 = Low   5 = High</p>
                       <ul>
                           <li>Affectionate With family</li>
                           <li>Kid friendly</li>
@@ -259,6 +263,7 @@
                 <div class="row top-row-data">
                   <div class="col-12 col-sm-6 justify-content-center">
                       <h3>Health and grooming needs is the average of the following:</h3>
+                      <p>1 = Low   5 = High</p>
                       <ul>
                           <li>Amount of shedding</li>
                           <li>Drooling potential</li>
@@ -333,6 +338,7 @@
                 <div class="row top-row-data">
                   <div class="col-12 col-sm-6 justify-content-center">
                       <h3>Trainability is the average of the following:</h3>
+                      <p>1 = Low   5 = High</p>
                       <ul>
                           <li>Easy to train</li>
                           <li>Intelligence</li>
@@ -624,10 +630,10 @@
                            </p>
                             <div class="row top-margin">
                                 <div class="col-12 col-md-6">
-                                    <img src="{% static 'images/Age distribution.png' %}"  class="img-fluid mx-auto d-block" width="450px">
+                                    <img src="{% static 'images/Agedistribution.png' %}"  class="img-fluid mx-auto d-block" width="450px">
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <img src="{% static 'images/speed by age.png' %}"  class="img-fluid mx-auto d-block" width="410px">
+                                    <img src="{% static 'images/speedbyage.png' %}"  class="img-fluid mx-auto d-block" width="410px">
                                 </div>
                             </div>
                             <div class="row top-margin">
@@ -635,7 +641,7 @@
                                     <img src="{% static 'images/mixed.png' %}"  class="img-fluid mx-auto d-block" width="450px">
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <img src="{% static 'images/mixed speed.png' %}"  class="img-fluid mx-auto d-block" width="410px">
+                                    <img src="{% static 'images/mixedspeed.png' %}"  class="img-fluid mx-auto d-block" width="410px">
                                 </div>
                             </div>
                             <p class="top-margin">The data has slightly more pure breeds than mixed breeds, as seen in the above distribution graphs.
@@ -648,7 +654,7 @@
                    </div>
                    <div class="row top-margin">
                        <div class="col-12 col-md-6">
-                           <h4><b>Dataset</b></h4>
+                           <h4><b>Machine Learning Methods</b></h4>
                            <p class="top-margin">The cleaned data first went through a preprocess and normalized. Next, a descriptive method,
                                logistic regression model, is applied for further analysis of the data. This analysis is
                                essential to highlight the features that are more relevant to the prediction outcome. It
@@ -666,7 +672,7 @@
                        </div>
                        <div class="col-12 col-md-6 justify-content-center">
                             {% load static %}
-                            <img src="{% static 'images/logistic regression.jpg' %}"  class="img-fluid mx-auto d-block" width="400px">
+                            <img src="{% static 'images/logisticregression.jpg' %}"  class="img-fluid mx-auto d-block" width="400px">
                        </div>
                    </div>
                    <div class="row top-margin">

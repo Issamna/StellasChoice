@@ -129,6 +129,7 @@ def about(request):
 
 
 def alldogs(request):
+    # Get all dog data
     all_dogs = Dog.objects.all()
     return render(request, 'alldogs.html', {
         'all_dogs': all_dogs
@@ -136,6 +137,7 @@ def alldogs(request):
 
 
 def pdf_view(request):
+    # Request file and return for download
     fs = FileSystemStorage()
     filename = 'baseapp/static/Capstone Document.pdf'
     if fs.exists(filename):
@@ -149,19 +151,29 @@ def pdf_view(request):
 
 @csrf_exempt
 def ajax_adoption_speed(request):
+    logger.info("baseapp.views.ajax_adoption_speed: POST")
+    logger.info(request.POST)
     json_data = {}
-    postValues = request.POST.copy()
-    age = int(postValues['age'])
-    breed2 = int(postValues['mixed'])
-    gender = int(postValues['gender'])
-    size = int(postValues['size'])
-    dewormed = int(postValues['dewormed'])
-    health = int(postValues['health'])
-    adoption_speed = predict_speed(age, breed2, gender, size, dewormed, health)
-    if adoption_speed == 0:
-        adoption_speed_return = "under"
-    else:
-        adoption_speed_return = "over"
-    json_data['answer'] = adoption_speed_return
+    json_data['answer'] = "over"
+    try:
+        json_data = {}
+        # Get data from frontend
+        postValues = request.POST.copy()
+        age = int(postValues['age'])
+        breed2 = int(postValues['mixed'])
+        gender = int(postValues['gender'])
+        size = int(postValues['size'])
+        dewormed = int(postValues['dewormed'])
+        health = int(postValues['health'])
+        # predict speed
+        adoption_speed = predict_speed(age, breed2, gender, size, dewormed, health)
+        if adoption_speed == 0:
+            adoption_speed_return = "under"
+        else:
+            adoption_speed_return = "over"
+        # Return answer
+        json_data['answer'] = adoption_speed_return
+    except Exception as e:
+        logger.info('%s (%s)' % (e.message, type(e)))
     return JsonResponse(json_data, safe=False)
 

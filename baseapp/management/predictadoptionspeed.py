@@ -50,10 +50,10 @@ def predict_speed(age, breed2, gender, size, dewormed, health):
     sc = StandardScaler()
     sc.fit(x)
     x = sc.fit_transform(x)
-
+    # Apply Naive Bayes
     gnb = GaussianNB()
     gnb.fit(x, y)
-
+    # Predict
     to_predict = [[age, breed2, gender, size, dewormed, health]]
     to_predict = sc.transform(to_predict)
     adoption_speed_predicted = gnb.predict(to_predict)

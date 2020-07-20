@@ -11,3 +11,7 @@
 <QueryDict: {'csrfmiddlewaretoken': ['rervZCWUx8yGANTRaERZixgPfyuu5vOQKmwGONnDDvkzvkMJAIxqGreH4uIRkVjs'], 'adaptabilitySelect': ['3'], 'energySelect': ['4'], 'friendlinessSelect': ['5'], 'health_groomingSelect': ['4'], 'trainabilitySelect': ['4'], 'sizeSelect': ['3']}>
 <QueryDict: {'csrfmiddlewaretoken': ['S48zTGqHyrlwfNCMCAwvdOpizp0RrLzZbcdKIRRqEO7pakvE2EcWBInaoleeGb4B'], 'adaptabilitySelect': ['3'], 'energySelect': ['4'], 'friendlinessSelect': ['5'], 'health_groomingSelect': ['4'], 'trainabilitySelect': ['4'], 'sizeSelect': ['3']}>
 <QueryDict: {'csrfmiddlewaretoken': ['qeA0cPJt84dcIHkRGIK7k7tiAvBzewxqJmFb10acerZ5DedJ6MqyI1raprPWtW22'], 'adaptabilitySelect': ['3'], 'energySelect': ['4'], 'friendlinessSelect': ['5'], 'health_groomingSelect': ['4'], 'trainabilitySelect': ['4'], 'sizeSelect': ['3']}>
+<QueryDict: {'csrfmiddlewaretoken': ['jzUB7CZHjJm6X5mhTW5lmqfg6SZE2HHaCHZMWNqqp68ZSCf9j0LMKkd8VOd1h7cM'], 'adaptabilitySelect': ['3'], 'energySelect': ['4'], 'friendlinessSelect': ['5'], 'health_groomingSelect': ['4'], 'trainabilitySelect': ['4'], 'sizeSelect': ['3']}>
+<QueryDict: {'csrfmiddlewaretoken': ['WDpHb00HSwkpGCrQlwB3Qfs0cJogmiEYfLuS0brqYT6iB9kILAhue9qS1FCDBI9A'], 'adaptabilitySelect': ['1'], 'energySelect': ['4'], 'friendlinessSelect': ['1'], 'health_groomingSelect': ['4'], 'trainabilitySelect': ['1'], 'sizeSelect': ['3']}>
+baseapp.views.ajax_adoption_speed: POST
+<QueryDict: {'age': ['0'], 'mixed': ['1'], 'gender': ['1'], 'size': ['1'], 'dewormed': ['0'], 'health': ['1']}>
