@@ -18,11 +18,13 @@ Some libraries have additional build dependencies.
 4. Install Python dependencies using:
     * `pip install -r /path/to/project_root/requirements.txt`
     * As stated above, some dependencies might have additional system requirements.
-5. Create your Django migrations and SQLite database with the following Django commands:
+5. If using database file (db.sqlite3) skip this step and step 6. To create your Django migrations and SQLite database use the following Django commands:
     * `python manage.py makemigrations`
     * `python manage.py migrate`
 6. Populate the database with the following:
-    * `python manage.py TODO`
+    * `python manage.py import_breeds`
+    * `python manage.py import_traits`
+    * `python manage.py import_dog`
 7. App can now be run with Django command:
     * `python manage.py runserver`
 
