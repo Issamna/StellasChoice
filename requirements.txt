@@ -4,6 +4,6 @@ pandas
 scikit-learn
 asgiref==3.2.10
 Django==3.0.8
-numpy==1.19.0
+numpy==1.22.0
 pytz==2020.1
 sqlparse==0.3.1
